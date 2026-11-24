@@ -2,18 +2,6 @@ import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { 
-  ShieldCheck, 
-  HeartHandshake, 
-  Users2, 
-  GraduationCap, 
-  ArrowRight,
-  CheckCircle2,
-  Compass,
-  BookOpen,
-  Award,
-  Sparkles
-} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +15,6 @@ const TABS = [
 const CHARTER_PILLARS = [
   {
     id: 'mentorship',
-    icon: HeartHandshake,
     title: 'Mentorship & Counseling',
     summary: 'Confidential personal guidance, mental wellness desks, and peer support circles.',
     details: [
@@ -37,7 +24,6 @@ const CHARTER_PILLARS = [
   },
   {
     id: 'safety',
-    icon: ShieldCheck,
     title: 'Campus Safety & Anti-Ragging',
     summary: 'Zero-tolerance compliance guaranteeing a welcoming, secure campus for all.',
     details: [
@@ -47,7 +33,6 @@ const CHARTER_PILLARS = [
   },
   {
     id: 'representation',
-    icon: Users2,
     title: 'Student Voice & Clubs',
     summary: 'Bridging student perspectives with administration to power campus life.',
     details: [
@@ -57,7 +42,6 @@ const CHARTER_PILLARS = [
   },
   {
     id: 'inclusion',
-    icon: GraduationCap,
     title: 'Scholarships & Welfare',
     summary: 'Assisting scholars with merit scholarships, equal access, and resources.',
     details: [
@@ -124,7 +108,7 @@ export default function AboutSection() {
       id="about"
       ref={containerRef}
       className="scroll-mt-24 py-16 sm:py-24 lg:py-28 bg-[#FAF7F8] border-t border-lavender-border/60 relative overflow-hidden"
-      aria-label="About the Student Welfare Office"
+      aria-label="About the Student Welfare Officer"
     >
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Centered Institutional Credo */}
@@ -154,7 +138,7 @@ export default function AboutSection() {
               <div>
                 <div className="mb-6">
                   <span className="text-[10px] uppercase tracking-widest text-plum font-semibold block mb-1">
-                    Student Welfare Office
+                    Student Welfare Officer
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl text-charcoal font-semibold">
                     Institutional Framework
@@ -176,7 +160,6 @@ export default function AboutSection() {
                         }`}
                       >
                         <span>{tab.label}</span>
-                        {isSelected && <ArrowRight className="w-4 h-4 text-plum shrink-0" />}
                       </button>
                     );
                   })}
@@ -203,7 +186,7 @@ export default function AboutSection() {
                       Overview
                     </h2>
                     <p className="text-base sm:text-lg text-charcoal/85 font-sans leading-relaxed">
-                      The <strong className="text-plum font-semibold">Student Welfare Office (SWO)</strong> of Dr. Ambedkar Institute of Technology functions as a student-centric representative body committed to enhancing the overall student experience. Serving as a vital link between students and the institution, the SWO promotes leadership, collaboration, and active participation while supporting the holistic development of the student community. Guided by the values and educational philosophy of Dr. AIT, the SWO strives to create an inclusive and engaging campus environment.
+                      The <strong className="text-plum font-semibold">Student Welfare Officer (SWO)</strong> of Dr. Ambedkar Institute of Technology functions as a student-centric representative body committed to enhancing the overall student experience. Serving as a vital link between students and the institution, the SWO promotes leadership, collaboration, and active participation while supporting the holistic development of the student community. Guided by the values and educational philosophy of Dr. AIT, the SWO strives to create an inclusive and engaging campus environment.
                     </p>
                   </div>
 
@@ -221,7 +204,7 @@ export default function AboutSection() {
                       Mission
                     </h3>
                     <p className="text-sm sm:text-base text-charcoal/85 font-sans leading-relaxed">
-                      To represent the student community with integrity, inclusivity, and responsibility by coordinating and supporting extracurricular initiatives that nurture individual talents, strengthen leadership capabilities, and foster holistic development. Guided by our institutional commitment, the Student Welfare Office seeks to inspire students to excel academically, serve society, and contribute to a vibrant and value-driven campus culture.
+                      To represent the student community with integrity, inclusivity, and responsibility by coordinating and supporting extracurricular initiatives that nurture individual talents, strengthen leadership capabilities, and foster holistic development. Guided by our institutional commitment, the Student Welfare Officer seeks to inspire students to excel academically, serve society, and contribute to a vibrant and value-driven campus culture.
                     </p>
                   </div>
                 </div>
@@ -239,31 +222,25 @@ export default function AboutSection() {
                   </div>
 
                   <div className="p-6 sm:p-8 rounded-xl bg-lavender/30 border border-lavender-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Sparkles className="w-5 h-5 text-plum" />
-                      <h3 className="font-serif text-2xl text-charcoal font-semibold">Our Vision</h3>
-                    </div>
+                    <h3 className="font-serif text-2xl text-charcoal font-semibold mb-3">Our Vision</h3>
                     <p className="text-base text-charcoal/90 font-sans leading-relaxed">
                       To be a dynamic, inclusive, and forward-looking student representative body at Dr. Ambedkar Institute of Technology that champions student interests, nurtures leadership, and promotes excellence in extracurricular engagement.
                     </p>
                   </div>
 
                   <div className="p-6 sm:p-8 rounded-xl bg-lilac/30 border border-lavender-border">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Award className="w-5 h-5 text-plum" />
-                      <h3 className="font-serif text-2xl text-charcoal font-semibold">Our Mission</h3>
-                    </div>
+                    <h3 className="font-serif text-2xl text-charcoal font-semibold mb-3">Our Mission</h3>
                     <ul className="space-y-3 text-sm sm:text-base text-charcoal/90 font-sans leading-relaxed">
                       <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-plum shrink-0 mt-1" />
+                        <span className="text-plum font-bold select-none">•</span>
                         <span>Represent the student body with transparent communication and administrative integrity.</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-plum shrink-0 mt-1" />
+                        <span className="text-plum font-bold select-none">•</span>
                         <span>Coordinate student societies spanning cultural, technical, sports, and civic outreach.</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-plum shrink-0 mt-1" />
+                        <span className="text-plum font-bold select-none">•</span>
                         <span>Champion student welfare, mental well-being, equal opportunity, and campus safety.</span>
                       </li>
                     </ul>
@@ -281,7 +258,7 @@ export default function AboutSection() {
                       Scope and Functions
                     </h2>
                     <p className="text-base text-charcoal/85 font-sans leading-relaxed mb-6">
-                      The Student Welfare Office serves as the focal operational hub connecting academic administration, faculty mentors, and student bodies across four primary spheres:
+                      The Student Welfare Officer serves as the focal operational hub connecting academic administration, faculty mentors, and student bodies across four primary spheres:
                     </p>
                   </div>
 
@@ -331,27 +308,19 @@ export default function AboutSection() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                     {CHARTER_PILLARS.map((p) => {
                       const isPillarSelected = p.id === activePillarId;
-                      const Icon = p.icon;
                       return (
                         <button
                           key={p.id}
                           type="button"
                           onClick={() => setActivePillarId(p.id)}
-                          className={`p-4 rounded-lg border text-left transition-all duration-200 cursor-pointer flex items-center gap-3 ${
+                          className={`p-4 rounded-lg border text-left transition-all duration-200 cursor-pointer ${
                             isPillarSelected
                               ? 'bg-lavender/60 border-plum shadow-xs'
                               : 'bg-white border-lavender-border hover:bg-lavender/20'
                           }`}
                         >
-                          <div className={`w-9 h-9 rounded-sm flex items-center justify-center shrink-0 ${
-                            isPillarSelected ? 'bg-plum text-white' : 'bg-lilac text-plum'
-                          }`}>
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <h4 className="font-serif text-sm font-semibold text-charcoal">{p.title}</h4>
-                            <span className="text-[11px] text-charcoal-muted block font-sans">View support desk</span>
-                          </div>
+                          <h4 className="font-serif text-sm font-semibold text-charcoal">{p.title}</h4>
+                          <span className="text-[11px] text-charcoal-muted block font-sans mt-0.5">View support desk</span>
                         </button>
                       );
                     })}
@@ -363,7 +332,7 @@ export default function AboutSection() {
                     <div className="space-y-2">
                       {activePillar.details.map((detail, idx) => (
                         <div key={idx} className="flex items-start gap-2.5 text-sm text-charcoal/90 font-sans">
-                          <CheckCircle2 className="w-4 h-4 text-plum shrink-0 mt-0.5" />
+                          <span className="text-plum font-bold select-none">•</span>
                           <span>{detail}</span>
                         </div>
                       ))}
@@ -379,10 +348,9 @@ export default function AboutSection() {
                 </span>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-plum hover:text-plum-deep uppercase tracking-wider font-sans group"
+                  className="text-xs font-semibold text-plum hover:text-plum-deep uppercase tracking-wider font-sans"
                 >
-                  <span>Connect with Welfare Office</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                  Connect with Welfare Desk
                 </a>
               </div>
             </div>

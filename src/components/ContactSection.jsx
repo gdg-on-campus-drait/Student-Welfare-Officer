@@ -2,14 +2,6 @@ import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import {
-  MapPin,
-  Clock,
-  ShieldAlert,
-  Send,
-  CheckCircle
-} from 'lucide-react';
-import MagneticButton from './MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,7 +18,6 @@ export default function ContactSection() {
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
 
-  // ScrollTrigger reveal
   useGSAP(
     () => {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -69,17 +60,14 @@ export default function ContactSection() {
       id="contact"
       ref={containerRef}
       className="scroll-mt-24 py-20 sm:py-28 lg:py-32 bg-white border-t border-lavender-border/60 relative overflow-hidden"
-      aria-label="Student Welfare Office Helpdesk and Contact"
+      aria-label="Student Welfare Officer Helpdesk and Contact"
     >
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Section Header */}
         <div ref={headerRef} className="max-w-3xl mb-12 sm:mb-16">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-plum" />
-            <span className="text-xs uppercase font-sans tracking-widest text-plum font-semibold">
-              Student Helpdesk
-            </span>
-          </div>
+          <span className="text-xs uppercase font-sans tracking-widest text-plum font-semibold block mb-2">
+            Student Helpdesk
+          </span>
           <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-charcoal font-normal leading-[1.12]">
             Connect with the Welfare Office
           </h2>
@@ -94,48 +82,33 @@ export default function ContactSection() {
           <div ref={leftColRef} className="lg:col-span-5 flex flex-col space-y-5">
             {/* Office Location */}
             <div className="p-5 rounded-sm bg-[#FAF7F8] border border-lavender-border/80">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-sm bg-lilac text-plum flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-base font-medium text-charcoal">
-                    Campus Office Location
-                  </h3>
-                  <p className="text-xs text-charcoal-muted font-sans mt-1 leading-relaxed">
-                    Room 104, Student Welfare Block,<br />
-                    Dr. Ambedkar Institute of Technology,<br />
-                    BDA Outer Ring Road, Mallathahalli, Bengaluru – 560056.
-                  </p>
-                </div>
-              </div>
+              <h3 className="font-serif text-base font-semibold text-charcoal">
+                Campus Office Location
+              </h3>
+              <p className="text-xs text-charcoal-muted font-sans mt-2 leading-relaxed">
+                Room 104, Student Welfare Block,<br />
+                Dr. Ambedkar Institute of Technology,<br />
+                BDA Outer Ring Road, Mallathahalli, Bengaluru – 560056.
+              </p>
             </div>
 
             {/* Working Hours */}
             <div className="p-5 rounded-sm bg-[#FAF7F8] border border-lavender-border/80">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-sm bg-lilac text-plum flex items-center justify-center shrink-0 mt-0.5">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-base font-medium text-charcoal">
-                    Desk Hours
-                  </h3>
-                  <p className="text-xs text-charcoal-muted font-sans mt-1 leading-relaxed">
-                    <strong>Mon – Fri:</strong> 9:00 AM – 5:00 PM<br />
-                    <strong>Saturday:</strong> 9:00 AM – 1:30 PM
-                  </p>
-                </div>
-              </div>
+              <h3 className="font-serif text-base font-semibold text-charcoal">
+                Desk Hours
+              </h3>
+              <p className="text-xs text-charcoal-muted font-sans mt-2 leading-relaxed">
+                <strong>Mon – Fri:</strong> 9:00 AM – 5:00 PM<br />
+                <strong>Saturday:</strong> 9:00 AM – 1:30 PM
+              </p>
             </div>
 
             {/* Anti-Ragging Helpline */}
             <div className="p-5 rounded-sm bg-lilac/50 border border-lavender-border text-xs text-charcoal-muted space-y-1.5">
-              <div className="flex items-center gap-1.5 text-plum font-semibold uppercase tracking-wider text-[10px]">
-                <ShieldAlert className="w-3.5 h-3.5 text-plum" />
-                <span>Statutory Anti-Ragging Helpdesk</span>
-              </div>
-              <p className="text-xs">
+              <span className="text-plum font-semibold uppercase tracking-wider text-[11px] block">
+                Statutory Anti-Ragging Helpdesk
+              </span>
+              <p className="text-xs leading-relaxed">
                 Zero-tolerance campus. 24x7 Toll-Free National Helpline: <strong>1800-180-5522</strong>
               </p>
             </div>
@@ -154,9 +127,6 @@ export default function ContactSection() {
 
             {submitted ? (
               <div className="py-8 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-lilac text-plum flex items-center justify-center mx-auto">
-                  <CheckCircle className="w-6 h-6 text-plum" />
-                </div>
                 <h4 className="font-serif text-xl text-charcoal font-medium">
                   Note Logged
                 </h4>
@@ -201,7 +171,7 @@ export default function ContactSection() {
                       type="text"
                       value={formData.usn}
                       onChange={(e) => setFormData({ ...formData, usn: e.target.value })}
-                      placeholder="e.g. 1DA21CS001"
+                      placeholder="e.g. 1DA22CS045"
                       className="w-full px-3 py-2 rounded-sm bg-white border border-lavender-border text-charcoal text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-plum"
                     />
                   </div>
@@ -209,7 +179,7 @@ export default function ContactSection() {
 
                 <div>
                   <label htmlFor="inquiry-category" className="block text-xs font-medium text-charcoal mb-1">
-                    Inquiry Category
+                    Nature of Inquiry
                   </label>
                   <select
                     id="inquiry-category"
@@ -218,41 +188,38 @@ export default function ContactSection() {
                     className="w-full px-3 py-2 rounded-sm bg-white border border-lavender-border text-charcoal text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-plum"
                   >
                     <option value="General Inquiry">General Welfare Inquiry</option>
-                    <option value="Student Clubs Support">Student Clubs & Societies</option>
-                    <option value="Scholarship Guidance">Scholarships & Fee Concessions</option>
-                    <option value="Counseling Appointment">Counseling Appointment</option>
-                    <option value="Anti-Ragging Consultation">Anti-Ragging Consultation</option>
+                    <option value="Clubs & Societies">Student Clubs & Societies Coordination</option>
+                    <option value="Counseling & Mentorship">Confidential Guidance Desk</option>
+                    <option value="Scholarships & Aid">Scholarship & Concession Desk</option>
+                    <option value="Campus Safety & Grievance">Anti-Ragging / Campus Safety Desk</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="inquiry-message" className="block text-xs font-medium text-charcoal mb-1">
-                    Message / Concern <span className="text-plum">*</span>
+                  <label htmlFor="student-message" className="block text-xs font-medium text-charcoal mb-1">
+                    Details / Narrative <span className="text-plum">*</span>
                   </label>
                   <textarea
-                    id="inquiry-message"
+                    id="student-message"
                     required
-                    rows={3}
+                    rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Briefly state your concern..."
+                    placeholder="Provide details regarding your inquiry..."
                     className="w-full px-3 py-2 rounded-sm bg-white border border-lavender-border text-charcoal text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-plum resize-none"
                   />
                 </div>
 
-                <div className="pt-1 flex items-center justify-between">
-                  <span className="text-[10px] text-charcoal-subtle">
-                    * Required fields
+                <div className="pt-2 flex items-center justify-between">
+                  <span className="text-[11px] text-charcoal-muted">
+                    Confidential & Secure Desk
                   </span>
-                  <MagneticButton strength={0.25}>
-                    <button
-                      type="submit"
-                      className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-sm bg-plum text-ivory text-xs font-medium hover:bg-plum-deep shadow-subtle transition-all"
-                    >
-                      <span>Submit</span>
-                      <Send className="w-3 h-3" />
-                    </button>
-                  </MagneticButton>
+                  <button
+                    type="submit"
+                    className="px-6 py-2.5 rounded-sm bg-plum text-ivory text-xs font-sans font-medium hover:bg-plum-deep shadow-xs transition-colors cursor-pointer"
+                  >
+                    Submit Note
+                  </button>
                 </div>
               </form>
             )}

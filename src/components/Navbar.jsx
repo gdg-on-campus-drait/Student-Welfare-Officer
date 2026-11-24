@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Menu, X, ArrowUpRight, GraduationCap, MapPin, Mail, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 import draitLogo from '../assets/drait-logo.png';
 import draitLogoWhite from '../assets/drait-logo-white.png';
@@ -239,7 +239,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={closeMenu}
-            className="p-2.5 rounded-full border border-lavender-border bg-white text-charcoal hover:text-plum hover:border-plum transition-colors focus:outline-none focus:ring-2 focus:ring-plum cursor-pointer"
+            className="p-2 rounded-md border border-lavender-border bg-white text-charcoal hover:text-plum hover:border-plum transition-colors focus:outline-none focus:ring-2 focus:ring-plum cursor-pointer"
             aria-label="Close navigation overlay"
           >
             <X className="w-5 h-5 text-plum" />

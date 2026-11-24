@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight, Compass } from 'lucide-react';
 import heroCampusImg from '../assets/hero-campus.jpg';
 import draitLogoWhite from '../assets/drait-logo-white.png';
 
@@ -13,7 +12,6 @@ export default function Hero() {
   const headingRef = useRef(null);
   const taglineRef = useRef(null);
   const descRef = useRef(null);
-  const ctaRef = useRef(null);
   const imageFrameRef = useRef(null);
 
   useGSAP(
@@ -25,7 +23,6 @@ export default function Hero() {
         defaults: { ease: 'power3.out' },
       });
 
-      // Cinematic entrance matching institutional banner reference
       tl.from(imageFrameRef.current, {
         opacity: 0,
         scale: 0.96,
@@ -49,13 +46,7 @@ export default function Hero() {
           y: 16,
           duration: 0.6,
           ease: 'power3.out',
-        }, 0.45)
-        .from(ctaRef.current, {
-          opacity: 0,
-          y: 14,
-          duration: 0.5,
-          ease: 'power3.out',
-        }, 0.55);
+        }, 0.45);
     },
     { scope: containerRef }
   );
@@ -65,7 +56,7 @@ export default function Hero() {
       id="home"
       ref={containerRef}
       className="relative min-h-[90vh] lg:min-h-screen pt-28 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 flex flex-col justify-center overflow-hidden bg-gradient-to-br from-[#270E26] via-[#471C44] to-[#210920] text-white"
-      aria-label="Student Welfare Office Homepage Hero"
+      aria-label="Student Welfare Officer Homepage Hero"
     >
       {/* Background Architectural Ambience Glow */}
       <div
@@ -78,9 +69,9 @@ export default function Hero() {
       />
 
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full">
-        {/* Main University Institutional Banner (Inspired by Reference) */}
+        {/* Main University Institutional Banner */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-center">
-          {/* Left Column: Prominent University Students (5 cols desktop) */}
+          {/* Left Column: University Students Photo */}
           <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center">
             <div
               ref={imageFrameRef}
@@ -99,7 +90,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Institutional Identity & Monumental Typography (7 cols desktop) */}
+          {/* Right Column: Institutional Identity & Monumental Typography */}
           <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center">
             {/* Official University Identity Logo */}
             <div className="mb-6 flex flex-col items-start">
@@ -135,31 +126,9 @@ export default function Hero() {
               ref={descRef}
               className="text-lavender/90 text-base sm:text-lg lg:text-xl font-sans font-normal leading-relaxed max-w-2xl text-balance"
             >
-              The Student Welfare Office brings students, communities and opportunities
+              The Student Welfare Officer brings students, communities and opportunities
               together to create a richer campus experience.
             </p>
-
-            {/* Navigation Shortcuts */}
-            <div
-              ref={ctaRef}
-              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4"
-            >
-              <a
-                href="#about"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-plum font-sans font-semibold text-sm hover:bg-lavender transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer group"
-              >
-                <span>Office Overview & Mandate</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-
-              <a
-                href="#clubs"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 text-white border border-white/25 font-sans font-medium text-sm hover:bg-white/20 transition-all duration-200 cursor-pointer"
-              >
-                <Compass className="w-4 h-4 text-lavender" />
-                <span>Explore Student Clubs</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>

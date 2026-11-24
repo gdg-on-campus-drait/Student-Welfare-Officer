@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowUp } from 'lucide-react';
 import draitLogo from '../assets/drait-logo.png';
 
 export default function Footer() {
@@ -31,11 +30,10 @@ export default function Footer() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-plum/20 hover:border-plum text-xs font-medium text-charcoal hover:text-plum transition-colors bg-white/80 shadow-xs cursor-pointer"
+            className="inline-flex items-center px-4 py-2 rounded-sm border border-plum/20 hover:border-plum text-xs font-medium text-charcoal hover:text-plum transition-colors bg-white/80 shadow-xs cursor-pointer"
             aria-label="Scroll back to top of page"
           >
-            <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <span>Back to top ↑</span>
           </button>
         </div>
 
