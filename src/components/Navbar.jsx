@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Menu, X, ArrowUpRight, GraduationCap, MapPin, Mail, Phone } from 'lucide-react';
 import MagneticButton from './MagneticButton';
+import draitLogo from '../assets/drait-logo.png';
+import draitLogoWhite from '../assets/drait-logo-white.png';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '#home', number: '01', subtitle: 'Welcome & Campus Vision' },
@@ -147,30 +149,21 @@ export default function Navbar() {
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, { label: 'Home', href: '#home' })}
-            className="group flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm"
-            aria-label="Student Welfare Office homepage"
+            className="group flex flex-col items-start gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm py-1"
+            aria-label="Dr. Ambedkar Institute of Technology - Student Welfare Officer"
           >
-            <span className={`font-serif font-bold text-2xl tracking-wider transition-colors duration-200 ${
-              isScrolled ? 'text-charcoal group-hover:text-plum' : 'text-white group-hover:text-lavender'
-            }`}>
-              SWO
+            <img
+              src={isScrolled ? draitLogo : draitLogoWhite}
+              alt="Dr. Ambedkar Institute of Technology"
+              className="h-8 sm:h-10 md:h-11 w-auto object-contain transition-all duration-300"
+            />
+            <span
+              className={`text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.18em] uppercase transition-colors duration-200 pl-0.5 ${
+                isScrolled ? 'text-plum' : 'text-lavender'
+              }`}
+            >
+              Student Welfare Officer
             </span>
-            <span className={`hidden sm:inline-block w-[1px] h-7 transition-colors duration-200 ${
-              isScrolled ? 'bg-lavender-border' : 'bg-white/25'
-            }`} />
-
-            <div className="flex flex-col">
-              <span className={`font-serif text-lg tracking-tight font-semibold leading-tight transition-colors duration-200 ${
-                isScrolled ? 'text-charcoal group-hover:text-plum' : 'text-white group-hover:text-lavender'
-              }`}>
-                Student Welfare Office
-              </span>
-              <span className={`text-[11px] sm:text-xs tracking-wide font-sans font-normal transition-colors duration-200 ${
-                isScrolled ? 'text-charcoal-muted' : 'text-lavender/90'
-              }`}>
-                Dr. Ambedkar Institute of Technology, Bengaluru
-              </span>
-            </div>
           </a>
 
           {/* Desktop Links + Fullscreen Menu Trigger */}
@@ -232,13 +225,14 @@ export default function Navbar() {
       >
         {/* Overlay Top Bar */}
         <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 w-full pt-6 flex items-center justify-between border-b border-lavender-border/70 pb-5">
-          <div className="flex items-center gap-3">
-            <span className="font-serif font-bold text-xl tracking-wider text-charcoal">
-              SWO
-            </span>
-            <span className="w-[1px] h-5 bg-lavender-border" />
-            <span className="font-serif text-base font-semibold text-charcoal">
-              Student Welfare Office • Dr. AIT
+          <div className="flex flex-col items-start gap-1">
+            <img
+              src={draitLogo}
+              alt="Dr. Ambedkar Institute of Technology"
+              className="h-8 sm:h-9 w-auto object-contain"
+            />
+            <span className="text-[10px] font-sans font-bold tracking-widest uppercase text-plum pl-0.5">
+              Student Welfare Officer
             </span>
           </div>
 

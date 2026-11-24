@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import draitLogo from '../assets/drait-logo.png';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -11,16 +12,17 @@ export default function Footer() {
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-plum/15">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="font-serif font-bold text-xl tracking-wider text-charcoal">
-                SWO
-              </span>
-              <span className="w-[1px] h-5 bg-plum/20" />
-              <span className="font-serif text-lg font-semibold text-charcoal">
-                Student Welfare Office
+            <div className="flex flex-col items-start gap-1">
+              <img
+                src={draitLogo}
+                alt="Dr. Ambedkar Institute of Technology"
+                className="h-9 sm:h-11 w-auto object-contain"
+              />
+              <span className="text-xs font-sans font-bold tracking-[0.18em] uppercase text-plum pl-0.5">
+                Student Welfare Officer
               </span>
             </div>
-            <p className="text-xs text-charcoal-muted mt-2 max-w-md leading-relaxed">
+            <p className="text-xs text-charcoal-muted mt-3 max-w-md leading-relaxed">
               Dr. Ambedkar Institute of Technology, BDA Outer Ring Road, Near Jnana Bharathi Campus,
               Mallathahalli, Bengaluru – 560056, Karnataka, India.
             </p>

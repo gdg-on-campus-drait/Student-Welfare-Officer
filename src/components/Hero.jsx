@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { ArrowRight, Compass } from 'lucide-react';
 import heroCampusImg from '../assets/hero-campus.jpg';
+import draitLogoWhite from '../assets/drait-logo-white.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,29 +101,23 @@ export default function Hero() {
 
           {/* Right Column: Institutional Identity & Monumental Typography (7 cols desktop) */}
           <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center">
-            {/* University Crest & Name */}
-            <div className="flex items-center gap-3.5 mb-6">
-              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/25 flex items-center justify-center font-serif font-bold text-lg text-white shadow-sm shrink-0">
-                SWO
-              </div>
-              <div>
-                <span className="block font-serif font-bold tracking-wider text-white uppercase text-sm sm:text-base lg:text-lg">
-                  Dr. Ambedkar Institute of Technology
-                </span>
-                <span className="block text-xs font-sans text-lavender/85 tracking-widest uppercase">
-                  Bengaluru, Karnataka • Autonomous • Estd. 1980
-                </span>
-              </div>
+            {/* Official University Identity Logo */}
+            <div className="mb-6 flex flex-col items-start">
+              <img
+                src={draitLogoWhite}
+                alt="Dr. Ambedkar Institute of Technology"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+              />
             </div>
 
-            {/* Monumental Title: STUDENT WELFARE OFFICE */}
+            {/* Monumental Title: STUDENT WELFARE OFFICER */}
             <div ref={headingRef}>
               <h1 className="font-serif tracking-tight leading-[0.98] mb-6">
                 <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-bold uppercase text-white tracking-tight">
                   Student
                 </span>
                 <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-bold uppercase text-lavender tracking-tight">
-                  Welfare Office
+                  Welfare Officer
                 </span>
               </h1>
             </div>
