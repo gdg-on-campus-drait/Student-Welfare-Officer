@@ -5,11 +5,9 @@ import MagneticButton from './MagneticButton';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '#home', number: '01', subtitle: 'Welcome & Campus Vision' },
-  { label: 'About', href: '#about', number: '02', subtitle: 'Mission & Welfare Charter' },
+  { label: 'About', href: '#about', number: '02', subtitle: 'Welfare Charter & Mission' },
   { label: 'Clubs', href: '#clubs', number: '03', subtitle: 'Student Societies & Forums' },
-  { label: 'Team', href: '#team', number: '04', subtitle: 'Governance & Leadership' },
-  { label: 'Activities', href: '#activities', number: '05', subtitle: 'Events & Campus Life' },
-  { label: 'Contact', href: '#contact', number: '06', subtitle: 'Helpdesk & Inquiries' },
+  { label: 'Contact', href: '#contact', number: '04', subtitle: 'Helpdesk & Inquiries' },
 ];
 
 export default function Navbar() {
@@ -40,7 +38,7 @@ export default function Navbar() {
 
   // Section Observer for active navigation indicator
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'clubs', 'team', 'activities', 'contact'];
+    const sectionIds = ['home', 'about', 'clubs', 'contact'];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
     if (sections.length === 0) return;
@@ -175,29 +173,14 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Quick Portal Action */}
-            <MagneticButton strength={0.25} className="hidden lg:block ml-2">
-              <a
-                href="#clubs"
-                onClick={(e) => handleNavClick(e, { label: 'Clubs', href: '#clubs' })}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide bg-lilac hover:bg-lavender text-plum border border-lavender-border transition-all duration-200 hover:shadow-xs group"
-              >
-                <span>Campus Hub</span>
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-            </MagneticButton>
-
-            {/* Menu Toggle Button (Triggers Gravelle du Parc Full-screen Overlay) */}
+            {/* Mobile Menu Toggle Button (Visible only on mobile) */}
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 sm:px-3 sm:py-1.5 rounded-sm text-charcoal hover:text-plum hover:bg-lavender/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center gap-2 text-xs font-sans font-medium border border-lavender-border/70"
+              className="md:hidden p-2 rounded-sm text-charcoal hover:text-plum hover:bg-lavender/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border border-lavender-border/70"
               aria-expanded={menuOpen}
               aria-label={menuOpen ? 'Close navigation overlay' : 'Open navigation overlay'}
             >
-              <span className="hidden sm:inline-block uppercase tracking-wider text-[11px]">
-                {menuOpen ? 'Close' : 'Menu'}
-              </span>
               {menuOpen ? <X className="w-5 h-5 text-plum" /> : <Menu className="w-5 h-5 text-plum" />}
             </button>
           </div>

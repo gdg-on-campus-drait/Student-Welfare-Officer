@@ -3,8 +3,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import ClubsShowcase from './components/ClubsShowcase';
-import TeamShowcase from './components/TeamShowcase';
-import ActivitiesGallery from './components/ActivitiesGallery';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
@@ -33,13 +31,7 @@ export default function App() {
         {/* Section 3: Student Communities & Hybrid Clubs Showcase */}
         <ClubsShowcase />
 
-        {/* Section 4: Governance & Leadership Showcase */}
-        <TeamShowcase />
-
-        {/* Section 5: Campus Life & Activities Gallery */}
-        <ActivitiesGallery />
-
-        {/* Section 6: Student Helpdesk & Contact Section */}
+        {/* Section 4: Student Helpdesk & Contact Section */}
         <ContactSection />
       </main>
 
