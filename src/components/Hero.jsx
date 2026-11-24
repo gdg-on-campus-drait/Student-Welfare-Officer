@@ -2,19 +2,18 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { MapPin } from 'lucide-react';
+import { ArrowRight, Compass } from 'lucide-react';
 import heroCampusImg from '../assets/hero-campus.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const containerRef = useRef(null);
-  const headingLine1Ref = useRef(null);
-  const headingLine2Ref = useRef(null);
+  const headingRef = useRef(null);
+  const taglineRef = useRef(null);
   const descRef = useRef(null);
+  const ctaRef = useRef(null);
   const imageFrameRef = useRef(null);
-  const imageRef = useRef(null);
-  const scrollIndicatorRef = useRef(null);
 
   useGSAP(
     () => {
@@ -25,216 +24,149 @@ export default function Hero() {
         defaults: { ease: 'power3.out' },
       });
 
-      // 1. Cinematic Hero Entrance Timeline
-      // Staggered Line-by-Line Heading Mask Reveal (Gravelle du Parc style)
-      tl.from(
-        [headingLine1Ref.current, headingLine2Ref.current],
-        {
-          yPercent: 115,
-          duration: 0.9,
-          stagger: 0.12,
+      // Cinematic entrance matching institutional banner reference
+      tl.from(imageFrameRef.current, {
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.9,
+        ease: 'power3.out',
+      }, 0.1)
+        .from(headingRef.current, {
+          opacity: 0,
+          y: 28,
+          duration: 0.8,
           ease: 'power4.out',
-        },
-        0.1
-      )
-        // Supporting paragraph reveal
-        .from(
-          descRef.current,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.65,
-            ease: 'power3.out',
-          },
-          0.35
-        )
-        // Hero Image: Smooth Clip-path & Scale-down Reveal
-        .fromTo(
-          imageFrameRef.current,
-          {
-            clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
-            opacity: 0.8,
-          },
-          {
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-            opacity: 1,
-            duration: 1.15,
-            ease: 'power4.inOut',
-          },
-          0.2
-        )
-        .fromTo(
-          imageRef.current,
-          {
-            scale: 1.16,
-          },
-          {
-            scale: 1,
-            duration: 1.3,
-            ease: 'power3.out',
-          },
-          0.2
-        )
-        // Scroll Indicator Entrance
-        .from(
-          scrollIndicatorRef.current,
-          {
-            opacity: 0,
-            y: 10,
-            duration: 0.5,
-          },
-          0.75
-        );
-
-      // Subtle scroll indicator continuous bounce
-      gsap.to('.scroll-dot', {
-        y: 8,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.3,
-        ease: 'sine.inOut',
-      });
-
-      // Subtle Parallax on Hero Image when scrolling
-      if (imageRef.current && containerRef.current) {
-        gsap.to(imageRef.current, {
-          yPercent: 8,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        });
-      }
+        }, 0.2)
+        .from(taglineRef.current, {
+          opacity: 0,
+          y: 18,
+          duration: 0.6,
+          ease: 'power3.out',
+        }, 0.35)
+        .from(descRef.current, {
+          opacity: 0,
+          y: 16,
+          duration: 0.6,
+          ease: 'power3.out',
+        }, 0.45)
+        .from(ctaRef.current, {
+          opacity: 0,
+          y: 14,
+          duration: 0.5,
+          ease: 'power3.out',
+        }, 0.55);
     },
     { scope: containerRef }
   );
-
-  const handleScrollToContent = (e) => {
-    e.preventDefault();
-    const target = document.getElementById('clubs') || document.getElementById('about');
-    if (target) {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(target, { offset: -70 });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
 
   return (
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 flex flex-col justify-between overflow-hidden bg-ivory"
+      className="relative min-h-[90vh] lg:min-h-screen pt-28 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 flex flex-col justify-center overflow-hidden bg-gradient-to-br from-[#270E26] via-[#471C44] to-[#210920] text-white"
       aria-label="Student Welfare Office Homepage Hero"
     >
-      {/* Decorative Lavender Ambience Elements */}
+      {/* Background Architectural Ambience Glow */}
       <div
-        className="pointer-events-none absolute -top-40 right-0 w-[650px] h-[650px] bg-lavender/35 rounded-full blur-3xl -z-10"
+        className="pointer-events-none absolute -top-40 right-0 w-[700px] h-[700px] bg-plum/30 rounded-full blur-[140px] -z-10"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute bottom-0 left-[-150px] w-[550px] h-[550px] bg-lilac/50 rounded-full blur-3xl -z-10"
+        className="pointer-events-none absolute bottom-0 left-[-150px] w-[600px] h-[600px] bg-lavender/15 rounded-full blur-[140px] -z-10"
         aria-hidden="true"
       />
 
-      <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full flex-grow flex flex-col justify-center">
-        {/* Main Editorial Grid: Balanced Full-Width 2-Column Composition */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-20 items-center">
-          {/* Left Column: Editorial Content (7 cols desktop) */}
-          <div className="lg:col-span-7 flex flex-col justify-center pr-0 lg:pr-6">
-            {/* Main Editorial Headline with Line-by-Line Masking */}
-            <h1 className="font-serif text-charcoal tracking-tightest leading-[1.05] mb-6 sm:mb-8">
-              <span className="block overflow-hidden py-1">
-                <span
-                  ref={headingLine1Ref}
-                  className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] 2xl:text-[6.25rem] font-normal"
-                >
-                  More Than Academics.
-                </span>
-              </span>
-              <span className="block overflow-hidden py-1">
-                <span
-                  ref={headingLine2Ref}
-                  className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] 2xl:text-[6.25rem] font-medium text-plum italic"
-                >
-                  A Community to Grow.
-                </span>
-              </span>
-            </h1>
+      <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full">
+        {/* Main University Institutional Banner (Inspired by Reference) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-center">
+          {/* Left Column: Prominent University Students (5 cols desktop) */}
+          <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center">
+            <div
+              ref={imageFrameRef}
+              className="relative w-full max-w-lg lg:max-w-none aspect-[4/5] sm:aspect-[1/1] lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-plum-deep"
+            >
+              <img
+                src={heroCampusImg}
+                alt="Dr. AIT university students on campus"
+                className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-[1.03]"
+                loading="eager"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-[#1F091E]/80 via-transparent to-transparent pointer-events-none"
+                aria-hidden="true"
+              />
+            </div>
+          </div>
 
-            {/* Mobile-Only Prominent Photograph */}
-            <div className="block lg:hidden my-6">
-              <div className="relative w-full max-w-md mx-auto aspect-[4/3] overflow-hidden rounded-sm bg-lilac shadow-editorial border border-lavender-border/80">
-                <img
-                  src={heroCampusImg}
-                  alt="Dr. AIT university students collaborating on campus"
-                  className="w-full h-full object-cover object-center filter saturate-[0.96]"
-                />
+          {/* Right Column: Institutional Identity & Monumental Typography (7 cols desktop) */}
+          <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center">
+            {/* University Crest & Name */}
+            <div className="flex items-center gap-3.5 mb-6">
+              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/25 flex items-center justify-center font-serif font-bold text-lg text-white shadow-sm shrink-0">
+                SWO
+              </div>
+              <div>
+                <span className="block font-serif font-bold tracking-wider text-white uppercase text-sm sm:text-base lg:text-lg">
+                  Dr. Ambedkar Institute of Technology
+                </span>
+                <span className="block text-xs font-sans text-lavender/85 tracking-widest uppercase">
+                  Bengaluru, Karnataka • Autonomous • Estd. 1980
+                </span>
               </div>
             </div>
+
+            {/* Monumental Title: STUDENT WELFARE OFFICE */}
+            <div ref={headingRef}>
+              <h1 className="font-serif tracking-tight leading-[0.98] mb-6">
+                <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-bold uppercase text-white tracking-tight">
+                  Student
+                </span>
+                <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-bold uppercase text-lavender tracking-tight">
+                  Welfare Office
+                </span>
+              </h1>
+            </div>
+
+            {/* Tagline */}
+            <p
+              ref={taglineRef}
+              className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-medium italic mb-4"
+            >
+              More Than Academics. A Community to Grow.
+            </p>
 
             {/* Supporting Description */}
             <p
               ref={descRef}
-              className="text-charcoal-muted text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed max-w-2xl text-balance font-sans"
+              className="text-lavender/90 text-base sm:text-lg lg:text-xl font-sans font-normal leading-relaxed max-w-2xl text-balance"
             >
               The Student Welfare Office brings students, communities and opportunities
               together to create a richer campus experience.
             </p>
-          </div>
 
-          {/* Right Column: Expansive, Immersive Campus Photograph (Desktop 5 cols) */}
-          <div className="hidden lg:flex lg:col-span-5 relative justify-center items-center">
-            {/* Main Image Frame Container with GSAP Reveal Mask */}
+            {/* Navigation Shortcuts */}
             <div
-              ref={imageFrameRef}
-              className="relative w-full max-w-xl aspect-[4/5] 2xl:aspect-[3/4] overflow-hidden rounded-sm bg-lilac shadow-editorial-lg border border-lavender-border"
+              ref={ctaRef}
+              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4"
             >
-              <img
-                ref={imageRef}
-                src={heroCampusImg}
-                alt="Dr. AIT university students collaborating and sharing ideas in an authentic campus community space"
-                className="w-full h-full object-cover object-center filter saturate-[0.98] contrast-[1.02]"
-                loading="eager"
-              />
+              <a
+                href="#about"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-plum font-sans font-semibold text-sm hover:bg-lavender transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer group"
+              >
+                <span>Office Overview & Mandate</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
 
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent pointer-events-none"
-                aria-hidden="true"
-              />
-
-              {/* Location Pin */}
-              <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory/95 backdrop-blur-sm text-xs font-sans text-charcoal border border-lavender-border shadow-xs">
-                <MapPin className="w-3.5 h-3.5 text-plum" />
-                <span>Dr. AIT Main Campus</span>
-              </div>
+              <a
+                href="#clubs"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 text-white border border-white/25 font-sans font-medium text-sm hover:bg-white/20 transition-all duration-200 cursor-pointer"
+              >
+                <Compass className="w-4 h-4 text-lavender" />
+                <span>Explore Student Clubs</span>
+              </a>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom: Discover SWO Scroll Indicator */}
-      <div
-        ref={scrollIndicatorRef}
-        className="w-full pt-8 sm:pt-10 flex flex-col items-center justify-center text-center"
-      >
-        <a
-          href="#about"
-          onClick={handleScrollToContent}
-          className="group inline-flex flex-col items-center gap-2 text-charcoal-subtle hover:text-plum transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm py-1"
-          aria-label="Discover SWO, scroll to student clubs showcase"
-        >
-          <span className="text-[10px] sm:text-[11px] font-sans uppercase tracking-widest font-medium">
-            Discover SWO
-          </span>
-          <div className="w-5 h-8 sm:h-9 rounded-full border border-charcoal-subtle/40 group-hover:border-plum flex items-start justify-center p-1 transition-colors">
-            <span className="scroll-dot w-1.5 h-1.5 rounded-full bg-plum" />
-          </div>
-        </a>
       </div>
     </section>
   );

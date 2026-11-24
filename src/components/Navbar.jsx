@@ -150,16 +150,24 @@ export default function Navbar() {
             className="group flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm"
             aria-label="Student Welfare Office homepage"
           >
-            <span className="font-serif font-bold text-2xl tracking-wider text-charcoal group-hover:text-plum transition-colors duration-200">
+            <span className={`font-serif font-bold text-2xl tracking-wider transition-colors duration-200 ${
+              isScrolled ? 'text-charcoal group-hover:text-plum' : 'text-white group-hover:text-lavender'
+            }`}>
               SWO
             </span>
-            <span className="hidden sm:inline-block w-[1px] h-7 bg-lavender-border" />
+            <span className={`hidden sm:inline-block w-[1px] h-7 transition-colors duration-200 ${
+              isScrolled ? 'bg-lavender-border' : 'bg-white/25'
+            }`} />
 
             <div className="flex flex-col">
-              <span className="font-serif text-lg tracking-tight text-charcoal font-semibold leading-tight group-hover:text-plum transition-colors duration-200">
+              <span className={`font-serif text-lg tracking-tight font-semibold leading-tight transition-colors duration-200 ${
+                isScrolled ? 'text-charcoal group-hover:text-plum' : 'text-white group-hover:text-lavender'
+              }`}>
                 Student Welfare Office
               </span>
-              <span className="text-[11px] sm:text-xs text-charcoal-muted tracking-wide font-sans font-normal">
+              <span className={`text-[11px] sm:text-xs tracking-wide font-sans font-normal transition-colors duration-200 ${
+                isScrolled ? 'text-charcoal-muted' : 'text-lavender/90'
+              }`}>
                 Dr. Ambedkar Institute of Technology, Bengaluru
               </span>
             </div>
@@ -175,15 +183,21 @@ export default function Navbar() {
                     key={item.label}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item)}
-                    className={`relative px-3 py-1.5 text-xs lg:text-sm tracking-wide transition-colors duration-200 rounded-sm font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-plum group ${isActive
-                      ? 'text-plum font-semibold'
-                      : 'text-charcoal/80 hover:text-plum font-medium'
-                      }`}
+                    className={`relative px-3 py-1.5 text-xs lg:text-sm tracking-wide transition-colors duration-200 rounded-sm font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-plum group ${
+                      isScrolled
+                        ? isActive
+                          ? 'text-plum font-semibold'
+                          : 'text-charcoal/80 hover:text-plum font-medium'
+                        : isActive
+                          ? 'text-white font-semibold'
+                          : 'text-white/85 hover:text-white font-medium'
+                    }`}
                   >
                     <span>{item.label}</span>
                     <span
-                      className={`absolute bottom-0 left-3 right-3 h-[1.5px] bg-plum transition-transform duration-300 origin-left ease-out ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                        }`}
+                      className={`absolute bottom-0 left-3 right-3 h-[1.5px] transition-transform duration-300 origin-left ease-out ${
+                        isScrolled ? 'bg-plum' : 'bg-lavender'
+                      } ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
                     />
                   </a>
                 );
@@ -194,11 +208,15 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 rounded-sm text-charcoal hover:text-plum hover:bg-lavender/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border border-lavender-border/70"
+              className={`md:hidden p-2 rounded-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border ${
+                isScrolled
+                  ? 'text-charcoal hover:text-plum hover:bg-lavender/40 border-lavender-border/70'
+                  : 'text-white hover:text-white hover:bg-white/10 border-white/25'
+              }`}
               aria-expanded={menuOpen}
               aria-label={menuOpen ? 'Close navigation overlay' : 'Open navigation overlay'}
             >
-              {menuOpen ? <X className="w-5 h-5 text-plum" /> : <Menu className="w-5 h-5 text-plum" />}
+              {menuOpen ? <X className="w-5 h-5 text-plum" /> : <Menu className="w-5 h-5 text-current" />}
             </button>
           </div>
         </div>
