@@ -1,52 +1,23 @@
 import React, { useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import heroCampusImg from '../assets/hero-campus.jpg';
-import draitLogoWhite from '../assets/drait-logo-white.png';
-
-gsap.registerPlugin(ScrollTrigger);
+import heroBannerImg from '../assets/hero-banner.jpg';
 
 export default function Hero() {
   const containerRef = useRef(null);
-  const headingRef = useRef(null);
-  const taglineRef = useRef(null);
-  const descRef = useRef(null);
-  const imageFrameRef = useRef(null);
+  const bannerRef = useRef(null);
 
   useGSAP(
     () => {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) return;
 
-      const tl = gsap.timeline({
-        defaults: { ease: 'power3.out' },
-      });
-
-      tl.from(imageFrameRef.current, {
+      gsap.from(bannerRef.current, {
         opacity: 0,
-        scale: 0.96,
-        duration: 0.9,
+        scale: 0.99,
+        duration: 0.7,
         ease: 'power3.out',
-      }, 0.1)
-        .from(headingRef.current, {
-          opacity: 0,
-          y: 28,
-          duration: 0.8,
-          ease: 'power4.out',
-        }, 0.2)
-        .from(taglineRef.current, {
-          opacity: 0,
-          y: 18,
-          duration: 0.6,
-          ease: 'power3.out',
-        }, 0.35)
-        .from(descRef.current, {
-          opacity: 0,
-          y: 16,
-          duration: 0.6,
-          ease: 'power3.out',
-        }, 0.45);
+      });
     },
     { scope: containerRef }
   );
@@ -55,81 +26,21 @@ export default function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-[90vh] lg:min-h-screen pt-28 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 flex flex-col justify-center overflow-hidden bg-gradient-to-br from-[#270E26] via-[#471C44] to-[#210920] text-white"
-      aria-label="Student Welfare Officer Homepage Hero"
+      className="relative w-full pt-14 sm:pt-16 bg-[#011C44] overflow-hidden"
+      aria-label="Student Welfare Office Homepage Hero"
     >
-      {/* Background Architectural Ambience Glow */}
-      <div
-        className="pointer-events-none absolute -top-40 right-0 w-[700px] h-[700px] bg-plum/30 rounded-full blur-[140px] -z-10"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 left-[-150px] w-[600px] h-[600px] bg-lavender/15 rounded-full blur-[140px] -z-10"
-        aria-hidden="true"
-      />
+      <h1 className="sr-only">
+        Student Welfare Office - Dr. Ambedkar Institute of Technology - Shaping well-being on the Campus
+      </h1>
 
-      <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 w-full">
-        {/* Main University Institutional Banner */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-center">
-          {/* Left Column: University Students Photo */}
-          <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center">
-            <div
-              ref={imageFrameRef}
-              className="relative w-full max-w-lg lg:max-w-none aspect-[4/5] sm:aspect-[1/1] lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-plum-deep"
-            >
-              <img
-                src={heroCampusImg}
-                alt="Dr. AIT university students on campus"
-                className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-[1.03]"
-                loading="eager"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-[#1F091E]/80 via-transparent to-transparent pointer-events-none"
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-
-          {/* Right Column: Institutional Identity & Monumental Typography */}
-          <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center">
-            {/* Official University Identity Logo */}
-            <div className="mb-6 flex flex-col items-start">
-              <img
-                src={draitLogoWhite}
-                alt="Dr. Ambedkar Institute of Technology"
-                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
-              />
-            </div>
-
-            {/* Monumental Title: STUDENT WELFARE OFFICER */}
-            <div ref={headingRef}>
-              <h1 className="font-serif tracking-tight leading-[0.98] mb-6">
-                <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-bold uppercase text-white tracking-tight">
-                  Student
-                </span>
-                <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-bold uppercase text-lavender tracking-tight">
-                  Welfare Officer
-                </span>
-              </h1>
-            </div>
-
-            {/* Tagline */}
-            <p
-              ref={taglineRef}
-              className="font-serif text-xl sm:text-2xl lg:text-3xl text-white font-medium italic mb-4"
-            >
-              More Than Academics. A Community to Grow.
-            </p>
-
-            {/* Supporting Description */}
-            <p
-              ref={descRef}
-              className="text-lavender/90 text-base sm:text-lg lg:text-xl font-sans font-normal leading-relaxed max-w-2xl text-balance"
-            >
-              The Student Welfare Officer brings students, communities and opportunities
-              together to create a richer campus experience.
-            </p>
-          </div>
+      <div className="w-full max-w-[1920px] mx-auto">
+        <div ref={bannerRef} className="relative w-full overflow-hidden shadow-2xl">
+          <img
+            src={heroBannerImg}
+            alt="Dr. Ambedkar Institute of Technology - Student Welfare Office - Shaping well-being on the Campus"
+            className="w-full h-auto block object-cover"
+            loading="eager"
+          />
         </div>
       </div>
     </section>

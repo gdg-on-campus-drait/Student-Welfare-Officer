@@ -139,9 +139,9 @@ export default function Navbar() {
     <>
       {/* Main Navbar with Themed Lavender Blur on Scroll */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out ${isScrolled
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${isScrolled
           ? 'bg-lavender/95 backdrop-blur-md py-2 sm:py-2.5 border-b border-plum/15 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.12)]'
-          : 'bg-transparent py-3 sm:py-3.5'
+          : 'bg-[#011C44] py-2.5 sm:py-3 border-b border-white/10'
           }`}
       >
         <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 flex items-center justify-between">
