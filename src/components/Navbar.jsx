@@ -64,7 +64,7 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Full-screen overlay menu animation (Gravelle du Parc style)
+  // Full-screen overlay menu animation
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -72,20 +72,18 @@ export default function Navbar() {
       document.body.style.overflow = 'hidden';
 
       if (!prefersReducedMotion && overlayRef.current) {
-        const tl = gsap.timeline();
-        tl.fromTo(
+        gsap.fromTo(
           overlayRef.current,
-          { opacity: 0, yPercent: -4 },
-          { opacity: 1, yPercent: 0, duration: 0.45, ease: 'power3.out' }
+          { opacity: 0, y: -15 },
+          { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' }
         );
 
         if (linksContainerRef.current) {
           const links = linksContainerRef.current.querySelectorAll('.overlay-link');
-          tl.fromTo(
+          gsap.fromTo(
             links,
-            { opacity: 0, y: 24 },
-            { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out' },
-            '-=0.25'
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power3.out' }
           );
         }
       }
@@ -98,10 +96,29 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  const closeMenu = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion && overlayRef.current) {
+      gsap.to(overlayRef.current, {
+        opacity: 0,
+        y: -10,
+        duration: 0.25,
+        ease: 'power2.in',
+        onComplete: () => {
+          setMenuOpen(false);
+          document.body.style.overflow = '';
+        },
+      });
+    } else {
+      setMenuOpen(false);
+      document.body.style.overflow = '';
+    }
+  };
+
   const handleNavClick = (e, item) => {
     setActiveItem(item.label);
     if (menuOpen) {
-      setMenuOpen(false);
+      closeMenu();
     }
     if (item.href.startsWith('#')) {
       const target = document.querySelector(item.href);
@@ -187,15 +204,16 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* 5. Full-Screen Editorial Navigation Overlay (Gravelle du Parc Style) */}
+      {/* 5. Full-Screen Editorial Navigation Overlay (Mobile & Expanded) */}
       <div
         ref={overlayRef}
-        className={`fixed inset-0 z-50 bg-[#FAF7F8] flex flex-col justify-between transition-all duration-400 ease-in-out ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-          }`}
+        className={`fixed inset-0 z-50 bg-[#FAF7F8] flex flex-col justify-between ${
+          menuOpen ? 'flex' : 'hidden'
+        }`}
         aria-hidden={!menuOpen}
       >
         {/* Overlay Top Bar */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full pt-6 flex items-center justify-between border-b border-lavender-border/70 pb-5">
+        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 w-full pt-6 flex items-center justify-between border-b border-lavender-border/70 pb-5">
           <div className="flex items-center gap-3">
             <span className="font-serif font-bold text-xl tracking-wider text-charcoal">
               SWO
@@ -208,79 +226,52 @@ export default function Navbar() {
 
           <button
             type="button"
-            onClick={() => setMenuOpen(false)}
-            className="p-2 rounded-full border border-lavender-border bg-white text-charcoal hover:text-plum hover:border-plum transition-colors focus:outline-none focus:ring-2 focus:ring-plum"
+            onClick={closeMenu}
+            className="p-2.5 rounded-full border border-lavender-border bg-white text-charcoal hover:text-plum hover:border-plum transition-colors focus:outline-none focus:ring-2 focus:ring-plum cursor-pointer"
             aria-label="Close navigation overlay"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 text-plum" />
           </button>
         </div>
 
-        {/* Overlay Main Menu Content */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full py-8 sm:py-12 flex-grow flex items-center">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full items-center">
-            {/* Left: Staggered Large Editorial Links */}
-            <nav
-              ref={linksContainerRef}
-              className="lg:col-span-8 flex flex-col space-y-2 sm:space-y-4"
-              aria-label="Full-screen navigation links"
-            >
-              {NAV_ITEMS.map((item) => {
-                const isActive = activeItem === item.label;
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item)}
-                    className="overlay-link group flex items-baseline justify-between py-2 border-b border-lavender-border/50 hover:border-plum transition-colors"
-                  >
-                    <div className="flex items-baseline gap-4 sm:gap-6">
-                      <span className="font-serif text-xs sm:text-sm text-charcoal-subtle tracking-widest font-normal">
-                        {item.number}
-                      </span>
-                      <span
-                        className={`font-serif text-3xl sm:text-5xl lg:text-6xl tracking-tight transition-transform duration-300 group-hover:translate-x-2 ${isActive ? 'text-plum font-semibold italic' : 'text-charcoal group-hover:text-plum'
-                          }`}
-                      >
-                        {item.label}
-                      </span>
-                    </div>
-                    <span className="hidden sm:inline-block text-xs font-sans text-charcoal-subtle uppercase tracking-widest">
-                      {item.subtitle}
+        {/* Overlay Main Menu Content: Clean Centered Editorial Links */}
+        <div className="max-w-3xl mx-auto px-6 w-full py-12 flex-grow flex items-center justify-center">
+          <nav
+            ref={linksContainerRef}
+            className="w-full flex flex-col space-y-4 sm:space-y-6"
+            aria-label="Full-screen navigation links"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeItem === item.label;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item)}
+                  className="overlay-link group flex items-baseline justify-between py-3 border-b border-lavender-border/60 hover:border-plum transition-colors cursor-pointer"
+                >
+                  <div className="flex items-baseline gap-4 sm:gap-6">
+                    <span className="font-serif text-sm sm:text-base text-charcoal-subtle tracking-widest font-normal">
+                      {item.number}
                     </span>
-                  </a>
-                );
-              })}
-            </nav>
-
-            {/* Right: Institutional Coordinates Panel */}
-            <div className="lg:col-span-4 bg-white p-6 sm:p-8 rounded-sm border border-lavender-border/80 shadow-editorial space-y-5">
-              <div className="flex items-center gap-2">
-                <GraduationCap className="w-4 h-4 text-plum" />
-                <span className="text-xs uppercase font-sans tracking-widest text-plum font-semibold">
-                  Campus Coordinates
-                </span>
-              </div>
-              <div>
-                <h4 className="font-serif text-lg text-charcoal font-medium">
-                  Dr. Ambedkar Institute of Technology
-                </h4>
-                <p className="text-xs text-charcoal-muted font-sans mt-1 leading-relaxed">
-                  Autonomous Institution Affiliated to VTU, Belagavi.<br />
-                  BDA Outer Ring Road, Near Jnana Bharathi Campus, Mallathahalli, Bengaluru – 560056.
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-lavender-border/60 text-xs text-charcoal-muted space-y-1 font-sans">
-                <p>Office Hours: Mon – Fri: 9:00 AM – 5:00 PM</p>
-                <p>National Anti-Ragging Helpline: 1800-180-5522</p>
-              </div>
-            </div>
-          </div>
+                    <span
+                      className={`font-serif text-3xl sm:text-5xl lg:text-6xl tracking-tight transition-transform duration-300 group-hover:translate-x-2 ${
+                        isActive
+                          ? 'text-plum font-semibold italic'
+                          : 'text-charcoal group-hover:text-plum'
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </nav>
         </div>
 
         {/* Overlay Bottom Footer */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full pb-6 text-xs text-charcoal-subtle flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-lavender-border/60 pt-4">
+        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 w-full pb-6 text-xs text-charcoal-subtle flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-lavender-border/60 pt-4">
           <span>Dr. Ambedkar Institute of Technology • Student Welfare Office</span>
           <span className="font-serif italic text-plum">"More Than Academics. A Community to Grow."</span>
         </div>

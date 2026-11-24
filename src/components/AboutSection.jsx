@@ -118,16 +118,16 @@ export default function AboutSection() {
       aria-label="About the Student Welfare Office"
     >
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* Editorial Pullquote: Full-Width Open Statement (No Boxy Notebook Look) */}
+        {/* Editorial Pullquote: Centered Open Statement */}
         <div
           ref={credoRef}
-          className="mb-14 sm:mb-20 py-8 sm:py-12 border-b border-lavender-border/80 relative"
+          className="mb-14 sm:mb-20 py-10 sm:py-14 border-b border-lavender-border/80 relative text-center flex justify-center"
         >
-          <div className="max-w-5xl">
-            <span className="text-xs font-sans uppercase tracking-widest text-plum font-semibold block mb-3">
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
+            <span className="text-xs font-sans uppercase tracking-widest text-plum font-semibold block mb-4">
               Institutional Credo
             </span>
-            <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-charcoal font-normal italic leading-relaxed">
+            <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-charcoal font-normal italic leading-relaxed text-balance">
               "Ensuring every learner at Dr. AIT discovers not only an engineering degree, 
               but an environment fostering empathy, leadership, and resilient character."
             </blockquote>

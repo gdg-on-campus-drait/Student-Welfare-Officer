@@ -174,17 +174,6 @@ export default function Hero() {
                   alt="Dr. AIT university students collaborating on campus"
                   className="w-full h-full object-cover object-center filter saturate-[0.96]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/65 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-3 left-3 right-3 p-3 rounded-sm bg-white/95 backdrop-blur-md border border-lavender-border text-charcoal">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-serif font-semibold text-charcoal">
-                      Bengaluru Campus Community
-                    </span>
-                    <span className="text-[10px] uppercase tracking-widest text-plum font-semibold px-2 py-0.5 rounded bg-lilac">
-                      Student Life
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -214,27 +203,9 @@ export default function Hero() {
               />
 
               <div
-                className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent pointer-events-none"
                 aria-hidden="true"
               />
-
-              {/* Floating Editorial Badge Overlay */}
-              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-sm bg-white/95 backdrop-blur-md border border-lavender-border/80 shadow-editorial text-charcoal">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-plum animate-pulse" />
-                    <span className="text-sm font-serif font-semibold text-charcoal tracking-wide">
-                      Bengaluru Campus
-                    </span>
-                  </div>
-                  <span className="text-[11px] uppercase font-sans tracking-widest text-plum font-semibold px-2.5 py-0.5 rounded bg-lilac">
-                    Active Hub
-                  </span>
-                </div>
-                <p className="text-xs sm:text-sm text-charcoal-muted mt-2 font-sans leading-relaxed">
-                  Where student ideas, cultural celebrations, and social initiatives find institutional backing.
-                </p>
-              </div>
 
               {/* Location Pin */}
               <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ivory/95 backdrop-blur-sm text-xs font-sans text-charcoal border border-lavender-border shadow-xs">
