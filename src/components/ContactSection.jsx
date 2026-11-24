@@ -59,19 +59,9 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={containerRef}
-      className="scroll-mt-24 py-20 sm:py-28 lg:py-32 bg-gradient-to-b from-[#EFE5F2] via-[#E8DDEC] to-[#E2D0E5] border-t border-plum/15 relative overflow-hidden"
+      className="scroll-mt-24 py-20 sm:py-28 lg:py-32 bg-slate-50/70 border-t border-slate-200/80 relative overflow-hidden"
       aria-label="Student Welfare Officer Helpdesk and Contact"
     >
-      {/* Ambient Depth Glows */}
-      <div
-        className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] bg-plum/10 rounded-full blur-[140px] -z-10"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 left-[-100px] w-[500px] h-[500px] bg-white/50 rounded-full blur-[120px] -z-10"
-        aria-hidden="true"
-      />
-
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Section Header */}
         <div ref={headerRef} className="max-w-3xl mb-12 sm:mb-16">
@@ -91,7 +81,7 @@ export default function ContactSection() {
           {/* Left Column: Official Desks & Campus Location (5 cols) */}
           <div ref={leftColRef} className="lg:col-span-5 flex flex-col space-y-5">
             {/* Office Location Card */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-plum/15 shadow-editorial">
+            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
               <h3 className="font-serif text-lg font-bold text-charcoal">
                 Campus Office Location
               </h3>
@@ -103,7 +93,7 @@ export default function ContactSection() {
             </div>
 
             {/* Working Hours Card */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-plum/15 shadow-editorial">
+            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
               <h3 className="font-serif text-lg font-bold text-charcoal">
                 Desk Hours
               </h3>
@@ -114,7 +104,7 @@ export default function ContactSection() {
             </div>
 
             {/* Anti-Ragging Helpline Card */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-white border-2 border-plum/25 shadow-editorial space-y-2">
+            <div className="p-6 sm:p-7 rounded-2xl bg-white border-2 border-plum/20 shadow-xs space-y-2">
               <span className="text-plum font-bold uppercase tracking-wider text-xs block font-sans">
                 Statutory Anti-Ragging Helpdesk
               </span>
@@ -124,12 +114,12 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Interactive Student Inquiry Form (7 cols) */}
+          {/* Right Column: Interactive Student Inquiry Form (7 cols) - Lavender Card Background */}
           <div
             ref={rightColRef}
-            className="lg:col-span-7 bg-white p-7 sm:p-10 lg:p-12 rounded-2xl border border-plum/15 shadow-editorial"
+            className="lg:col-span-7 bg-gradient-to-br from-[#F6EEF8] via-[#F0E4F3] to-[#E9DAEE] p-7 sm:p-10 lg:p-12 rounded-2xl border border-[#D5BFDA] shadow-md"
           >
-            <div className="mb-6 pb-4 border-b border-lavender-border/80">
+            <div className="mb-6 pb-4 border-b border-[#D5BFDA]">
               <h3 className="font-serif text-2xl sm:text-3xl text-charcoal font-semibold">
                 Submit an Inquiry or Welfare Note
               </h3>
@@ -152,7 +142,7 @@ export default function ContactSection() {
                     setSubmitted(false);
                     setFormData({ name: '', usn: '', category: 'General Inquiry', message: '' });
                   }}
-                  className="mt-3 px-5 py-2.5 rounded-md text-xs font-sans font-semibold text-plum border border-plum/30 hover:bg-lavender/40 transition-colors"
+                  className="mt-3 px-5 py-2.5 rounded-md text-xs font-sans font-semibold text-plum bg-white border border-[#D5BFDA] hover:bg-white/80 transition-colors cursor-pointer"
                 >
                   Submit Another Note
                 </button>
@@ -171,7 +161,7 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Ananya Rao"
-                      className="w-full px-3.5 py-2.5 rounded-md bg-[#FAF7F8] border border-lavender-border text-charcoal text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-plum focus:border-plum transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-md bg-white border border-[#D5BFDA] text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-plum/30 focus:border-plum transition-all shadow-2xs"
                     />
                   </div>
 
@@ -185,7 +175,7 @@ export default function ContactSection() {
                       value={formData.usn}
                       onChange={(e) => setFormData({ ...formData, usn: e.target.value })}
                       placeholder="e.g. 1DA22CS045"
-                      className="w-full px-3.5 py-2.5 rounded-md bg-[#FAF7F8] border border-lavender-border text-charcoal text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-plum focus:border-plum transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-md bg-white border border-[#D5BFDA] text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-plum/30 focus:border-plum transition-all shadow-2xs"
                     />
                   </div>
                 </div>
@@ -198,7 +188,7 @@ export default function ContactSection() {
                     id="inquiry-category"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-md bg-[#FAF7F8] border border-lavender-border text-charcoal text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-plum focus:border-plum transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-md bg-white border border-[#D5BFDA] text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-plum/30 focus:border-plum transition-all shadow-2xs"
                   >
                     <option value="General Inquiry">General Welfare Inquiry</option>
                     <option value="Clubs & Societies">Student Clubs & Societies Coordination</option>
@@ -219,7 +209,7 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Provide details regarding your inquiry..."
-                    className="w-full px-3.5 py-2.5 rounded-md bg-[#FAF7F8] border border-lavender-border text-charcoal text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-plum focus:border-plum resize-none transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-md bg-white border border-[#D5BFDA] text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-plum/30 focus:border-plum resize-none transition-all shadow-2xs"
                   />
                 </div>
 
