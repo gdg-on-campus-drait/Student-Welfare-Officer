@@ -140,30 +140,23 @@ export default function Navbar() {
       {/* Main Navbar with Themed Lavender Blur on Scroll */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out ${isScrolled
-          ? 'bg-lavender/95 backdrop-blur-md py-3.5 border-b border-plum/15 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.12)]'
-          : 'bg-transparent py-5 sm:py-6'
+          ? 'bg-lavender/95 backdrop-blur-md py-2 sm:py-2.5 border-b border-plum/15 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.12)]'
+          : 'bg-transparent py-3 sm:py-3.5'
           }`}
       >
         <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 flex items-center justify-between">
-          {/* Brand Wordmark & Institutional Identity */}
+          {/* Brand Institutional Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, { label: 'Home', href: '#home' })}
-            className="group flex flex-col items-start gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm py-1"
-            aria-label="Dr. Ambedkar Institute of Technology - Student Welfare Officer"
+            className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm py-0.5"
+            aria-label="Dr. Ambedkar Institute of Technology"
           >
             <img
               src={isScrolled ? draitLogo : draitLogoWhite}
               alt="Dr. Ambedkar Institute of Technology"
-              className="h-8 sm:h-10 md:h-11 w-auto object-contain transition-all duration-300"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300"
             />
-            <span
-              className={`text-[10px] sm:text-[11px] font-sans font-bold tracking-[0.18em] uppercase transition-colors duration-200 pl-0.5 ${
-                isScrolled ? 'text-plum' : 'text-lavender'
-              }`}
-            >
-              Student Welfare Officer
-            </span>
           </a>
 
           {/* Desktop Links + Fullscreen Menu Trigger */}
@@ -224,16 +217,13 @@ export default function Navbar() {
         aria-hidden={!menuOpen}
       >
         {/* Overlay Top Bar */}
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 w-full pt-6 flex items-center justify-between border-b border-lavender-border/70 pb-5">
-          <div className="flex flex-col items-start gap-1">
+        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 w-full pt-5 flex items-center justify-between border-b border-lavender-border/70 pb-4">
+          <div className="flex items-center">
             <img
               src={draitLogo}
               alt="Dr. Ambedkar Institute of Technology"
-              className="h-8 sm:h-9 w-auto object-contain"
+              className="h-7 sm:h-8 w-auto object-contain"
             />
-            <span className="text-[10px] font-sans font-bold tracking-widest uppercase text-plum pl-0.5">
-              Student Welfare Officer
-            </span>
           </div>
 
           <button
