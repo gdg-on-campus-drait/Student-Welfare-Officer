@@ -137,12 +137,13 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Main Navbar with Themed Lavender Blur on Scroll */}
+      {/* Main Navbar matching Reference */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${isScrolled
-          ? 'bg-lavender/95 backdrop-blur-md py-2 sm:py-2.5 border-b border-plum/15 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.12)]'
-          : 'bg-[#011C44] py-2.5 sm:py-3 border-b border-white/10'
-          }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
+          isScrolled
+            ? 'bg-lavender/95 backdrop-blur-md py-2.5 sm:py-3 border-b border-plum/15 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.12)]'
+            : 'bg-white py-2.5 sm:py-3 border-b border-lavender-border/80 shadow-xs'
+        }`}
       >
         <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 flex items-center justify-between">
           {/* Brand Institutional Logo */}
@@ -153,9 +154,9 @@ export default function Navbar() {
             aria-label="Dr. Ambedkar Institute of Technology"
           >
             <img
-              src={isScrolled ? draitLogo : draitLogoWhite}
+              src={draitLogo}
               alt="Dr. Ambedkar Institute of Technology"
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300"
+              className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-all duration-300"
             />
           </a>
 
@@ -169,21 +170,17 @@ export default function Navbar() {
                     key={item.label}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item)}
-                    className={`relative px-3 py-1.5 text-xs lg:text-sm tracking-wide transition-colors duration-200 rounded-sm font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-plum group ${
-                      isScrolled
-                        ? isActive
-                          ? 'text-plum font-semibold'
-                          : 'text-charcoal/80 hover:text-plum font-medium'
-                        : isActive
-                          ? 'text-white font-semibold'
-                          : 'text-white/85 hover:text-white font-medium'
+                    className={`relative px-3.5 py-1.5 text-xs lg:text-sm tracking-wide transition-colors duration-200 rounded-sm font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-plum group ${
+                      isActive
+                        ? 'text-plum font-semibold'
+                        : 'text-charcoal/80 hover:text-plum font-medium'
                     }`}
                   >
                     <span>{item.label}</span>
                     <span
-                      className={`absolute bottom-0 left-3 right-3 h-[1.5px] transition-transform duration-300 origin-left ease-out ${
-                        isScrolled ? 'bg-plum' : 'bg-lavender'
-                      } ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
+                      className={`absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-plum transition-transform duration-300 origin-left ease-out ${
+                        isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      }`}
                     />
                   </a>
                 );
@@ -194,11 +191,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`md:hidden p-2 rounded-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border ${
-                isScrolled
-                  ? 'text-charcoal hover:text-plum hover:bg-lavender/40 border-lavender-border/70'
-                  : 'text-white hover:text-white hover:bg-white/10 border-white/25'
-              }`}
+              className="md:hidden p-2 rounded-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border text-charcoal hover:text-plum hover:bg-lavender/40 border-lavender-border/70"
               aria-expanded={menuOpen}
               aria-label={menuOpen ? 'Close navigation overlay' : 'Open navigation overlay'}
             >
