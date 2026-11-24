@@ -145,12 +145,12 @@ export default function Navbar() {
             : 'bg-white py-2.5 sm:py-3 border-b border-lavender-border/80 shadow-xs'
         }`}
       >
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 flex items-center justify-between">
+        <div className="relative max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 flex items-center justify-between">
           {/* Brand Institutional Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, { label: 'Home', href: '#home' })}
-            className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm py-0.5"
+            className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm py-0.5 z-10"
             aria-label="Dr. Ambedkar Institute of Technology"
           >
             <img
@@ -160,38 +160,41 @@ export default function Navbar() {
             />
           </a>
 
-          {/* Desktop Links + Fullscreen Menu Trigger */}
-          <div className="flex items-center gap-2 lg:gap-4">
-            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-              {NAV_ITEMS.map((item) => {
-                const isActive = activeItem === item.label;
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item)}
-                    className={`relative px-3.5 py-1.5 text-xs lg:text-sm tracking-wide transition-colors duration-200 rounded-sm font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-plum group ${
-                      isActive
-                        ? 'text-plum font-semibold'
-                        : 'text-charcoal/80 hover:text-plum font-medium'
+          {/* Centered Desktop Navigation Links */}
+          <nav
+            className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-2 lg:gap-6 z-10"
+            aria-label="Main navigation"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeItem === item.label;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item)}
+                  className={`relative px-3.5 py-1.5 text-xs lg:text-sm tracking-wide transition-colors duration-200 rounded-sm font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-plum group ${
+                    isActive
+                      ? 'text-plum font-semibold'
+                      : 'text-charcoal/80 hover:text-plum font-medium'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <span
+                    className={`absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-plum transition-transform duration-300 origin-left ease-out ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
-                  >
-                    <span>{item.label}</span>
-                    <span
-                      className={`absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-plum transition-transform duration-300 origin-left ease-out ${
-                        isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                      }`}
-                    />
-                  </a>
-                );
-              })}
-            </nav>
+                  />
+                </a>
+              );
+            })}
+          </nav>
 
-            {/* Mobile Menu Toggle Button (Visible only on mobile) */}
+          {/* Mobile Menu Toggle Button (Visible only on mobile) */}
+          <div className="flex items-center md:hidden z-10">
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 rounded-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border text-charcoal hover:text-plum hover:bg-lavender/40 border-lavender-border/70"
+              className="p-2 rounded-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum flex items-center justify-center border text-charcoal hover:text-plum hover:bg-lavender/40 border-lavender-border/70"
               aria-expanded={menuOpen}
               aria-label={menuOpen ? 'Close navigation overlay' : 'Open navigation overlay'}
             >
