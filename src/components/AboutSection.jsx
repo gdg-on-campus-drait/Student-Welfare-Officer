@@ -15,7 +15,6 @@ const TABS = [
 export default function AboutSection() {
   const [activeTab, setActiveTab] = useState('overview');
   const containerRef = useRef(null);
-  const credoRef = useRef(null);
   const mainPanelRef = useRef(null);
   const contentPaneRef = useRef(null);
 
@@ -24,25 +23,14 @@ export default function AboutSection() {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) return;
 
-      gsap.from(credoRef.current, {
-        opacity: 0,
-        y: 24,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: credoRef.current,
-          start: 'top 85%',
-        },
-      });
-
       gsap.from(mainPanelRef.current, {
         opacity: 0,
-        y: 30,
-        duration: 0.8,
+        y: 28,
+        duration: 0.75,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: mainPanelRef.current,
-          start: 'top 82%',
+          start: 'top 85%',
         },
       });
     },
@@ -65,32 +53,16 @@ export default function AboutSection() {
     <section
       id="about"
       ref={containerRef}
-      className="scroll-mt-24 py-16 sm:py-24 lg:py-28 bg-[#FAF7F8] border-t border-lavender-border/60 relative overflow-hidden"
+      className="scroll-mt-24 py-12 sm:py-16 lg:py-20 bg-[#FAF7F8] border-t border-lavender-border/60 relative overflow-hidden"
       aria-label="About the Student Welfare Officer"
     >
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* Centered Institutional Credo */}
-        <div
-          ref={credoRef}
-          className="mb-14 sm:mb-20 py-8 sm:py-12 border-b border-lavender-border/80 text-center flex justify-center"
-        >
-          <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <span className="text-xs font-sans uppercase tracking-widest text-plum font-semibold block mb-3">
-              Institutional Credo
-            </span>
-            <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-charcoal font-normal italic leading-relaxed text-balance">
-              "Ensuring every learner at Dr. AIT discovers not only an engineering degree, 
-              but an environment fostering empathy, leadership, and resilient character."
-            </blockquote>
-          </div>
-        </div>
-
-        {/* Institutional Section Matching University Layout Reference */}
+        {/* Institutional Framework Container */}
         <div
           ref={mainPanelRef}
           className="bg-white rounded-xl sm:rounded-2xl border border-lavender-border shadow-editorial overflow-hidden"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[580px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[560px]">
             {/* Left Sidebar Navigation (4 cols desktop) */}
             <div className="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-lavender-border/80 p-6 sm:p-8 bg-[#FAF7F8]/60 flex flex-col justify-between">
               <div>
@@ -181,7 +153,7 @@ export default function AboutSection() {
                   <div className="p-6 sm:p-8 rounded-xl bg-[#FAF7F8] border border-lavender-border shadow-sm">
                     <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start">
                       {/* Photo Placeholder Frame */}
-                      <div className="w-full sm:w-48 md:w-56 aspect-[3/4] rounded-lg border-2 border-dashed border-plum/30 bg-lavender/35 flex flex-col items-center justify-center p-4 text-center shrink-0">
+                      <div className="w-full sm:w-44 md:w-52 aspect-[3/4] rounded-lg border-2 border-dashed border-plum/30 bg-lavender/35 flex flex-col items-center justify-center p-4 text-center shrink-0">
                         <div className="w-14 h-14 rounded-full bg-plum/10 text-plum flex items-center justify-center font-serif text-xl font-bold mb-3 border border-plum/20">
                           SWO
                         </div>
