@@ -1,10 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import {
-  ChevronLeft,
-  ChevronRight,
   CheckCircle2,
   Calendar,
   ArrowRight,
@@ -114,11 +112,8 @@ const CLUBS = [
 export default function ClubsShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
-  const sliderRef = useRef(null);
+  const gridRef = useRef(null);
   const detailsRef = useRef(null);
-  const isDraggingRef = useRef(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
 
   const selectedClub = CLUBS[activeIndex];
 
@@ -139,37 +134,25 @@ export default function ClubsShowcase() {
         },
       });
 
-      gsap.from('.clubs-slider-reveal', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sliderRef.current,
-          start: 'top 85%',
-        },
-      });
+      if (gridRef.current) {
+        gsap.from(gridRef.current.children, {
+          opacity: 0,
+          y: 28,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 82%',
+          },
+        });
+      }
     },
     { scope: containerRef }
   );
 
-  // Smooth slide to index in horizontal gallery
-  const scrollToClub = (index) => {
-    const clampedIndex = Math.max(0, Math.min(CLUBS.length - 1, index));
-    setActiveIndex(clampedIndex);
-
-    if (sliderRef.current) {
-      const card = sliderRef.current.children[clampedIndex];
-      if (card) {
-        card.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest',
-        });
-      }
-    }
-
-    // Animate details panel update
+  const handleSelectClub = (index) => {
+    setActiveIndex(index);
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!prefersReducedMotion && detailsRef.current) {
       gsap.fromTo(
@@ -177,44 +160,6 @@ export default function ClubsShowcase() {
         { opacity: 0.4, y: 10 },
         { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
       );
-    }
-  };
-
-  const handlePrev = () => {
-    scrollToClub(activeIndex > 0 ? activeIndex - 1 : CLUBS.length - 1);
-  };
-
-  const handleNext = () => {
-    scrollToClub(activeIndex < CLUBS.length - 1 ? activeIndex + 1 : 0);
-  };
-
-  // Pointer drag & touch swiping support
-  const handlePointerDown = (e) => {
-    if (!sliderRef.current) return;
-    isDraggingRef.current = true;
-    startXRef.current = e.pageX || (e.touches && e.touches[0].pageX);
-    scrollLeftRef.current = sliderRef.current.scrollLeft;
-  };
-
-  const handlePointerMove = (e) => {
-    if (!isDraggingRef.current || !sliderRef.current) return;
-    const x = e.pageX || (e.touches && e.touches[0].pageX);
-    const walk = (x - startXRef.current) * 1.5;
-    sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
-  };
-
-  const handlePointerUp = () => {
-    isDraggingRef.current = false;
-  };
-
-  // Keyboard navigation
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      handleNext();
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      handlePrev();
     }
   };
 
@@ -226,8 +171,8 @@ export default function ClubsShowcase() {
       aria-label="Student Clubs and Communities Showcase"
     >
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* Section Header with Navigation Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 clubs-header-reveal">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 clubs-header-reveal">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2.5 h-2.5 rounded-full bg-plum" />
@@ -243,46 +188,18 @@ export default function ClubsShowcase() {
             </p>
           </div>
 
-          {/* Interactive Arrow Controls & Counter */}
-          <div className="flex items-center gap-4 shrink-0">
-            <span className="text-sm font-serif text-charcoal-subtle tracking-widest">
-              <strong className="text-plum text-base font-semibold">{`0${activeIndex + 1}`}</strong> / {`0${CLUBS.length}`}
+          {/* Institutional Clubs Counter */}
+          <div className="shrink-0">
+            <span className="text-xs uppercase font-sans tracking-widest text-plum font-semibold px-4 py-1.5 rounded-full bg-lilac border border-lavender-border">
+              {CLUBS.length} Student Societies
             </span>
-            <div className="flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="w-11 h-11 rounded-full border border-lavender-border bg-white text-charcoal hover:border-plum hover:text-plum flex items-center justify-center transition-all duration-200 shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-plum active:scale-95"
-                aria-label="Previous club"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                className="w-11 h-11 rounded-full border border-lavender-border bg-white text-charcoal hover:border-plum hover:text-plum flex items-center justify-center transition-all duration-200 shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-plum active:scale-95"
-                aria-label="Next club"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* 3. Interactive Horizontal Club Gallery (Draggable & Swipeable) */}
+        {/* All Clubs Grid — All Visible Simultaneously Without Horizontal Scrolling */}
         <div
-          ref={sliderRef}
-          data-cursor="drag"
-          tabIndex={0}
-          onKeyDown={handleKeyDown}
-          onMouseDown={handlePointerDown}
-          onMouseMove={handlePointerMove}
-          onMouseUp={handlePointerUp}
-          onMouseLeave={handlePointerUp}
-          onTouchStart={handlePointerDown}
-          onTouchMove={handlePointerMove}
-          onTouchEnd={handlePointerUp}
-          className="clubs-slider-reveal flex items-stretch gap-6 sm:gap-8 overflow-x-auto pb-8 scrollbar-none no-scrollbar cursor-grab active:cursor-grabbing select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-plum -mx-6 px-6 sm:mx-0 sm:px-0 scroll-smooth"
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8"
         >
           {CLUBS.map((club, idx) => {
             const isActive = idx === activeIndex;
@@ -290,15 +207,15 @@ export default function ClubsShowcase() {
             return (
               <div
                 key={club.id}
-                onClick={() => scrollToClub(idx)}
-                className={`group relative shrink-0 w-[300px] sm:w-[350px] lg:w-[380px] rounded-sm transition-all duration-300 cursor-pointer ${
+                onClick={() => handleSelectClub(idx)}
+                className={`group relative rounded-sm transition-all duration-300 cursor-pointer flex flex-col ${
                   isActive
-                    ? 'ring-2 ring-plum ring-offset-4 ring-offset-ivory shadow-editorial scale-[1.01]'
-                    : 'opacity-80 hover:opacity-100 hover:shadow-editorial'
+                    ? 'ring-2 ring-plum ring-offset-4 ring-offset-[#FAF7F8] shadow-editorial-lg scale-[1.02]'
+                    : 'opacity-85 hover:opacity-100 hover:shadow-editorial hover:-translate-y-1'
                 }`}
               >
                 {/* Editorial Image Card */}
-                <div className="relative aspect-[4/5] rounded-sm overflow-hidden bg-lilac border border-lavender-border shadow-sm flex flex-col justify-between p-6 text-white">
+                <div className="relative aspect-[3/4] sm:aspect-[4/5] rounded-sm overflow-hidden bg-lilac border border-lavender-border shadow-sm flex flex-col justify-between p-5 sm:p-6 text-white">
                   <img
                     src={club.image}
                     alt={club.fullName}
@@ -309,26 +226,26 @@ export default function ClubsShowcase() {
 
                   {/* Top Bar on Card */}
                   <div className="relative z-10 flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs">
                       {club.category}
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-charcoal/60 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold">
+                    <span className="w-7 h-7 rounded-full bg-charcoal/60 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold">
                       0{idx + 1}
                     </span>
                   </div>
 
                   {/* Bottom Content on Card */}
-                  <div className="relative z-10 space-y-1.5">
-                    <div className="flex items-center gap-2">
-                      <Icon className="w-4 h-4 text-lavender" />
-                      <span className="text-xs uppercase tracking-wider font-semibold text-lavender">
+                  <div className="relative z-10 space-y-1">
+                    <div className="flex items-center gap-1.5">
+                      <Icon className="w-3.5 h-3.5 text-lavender" />
+                      <span className="text-[11px] uppercase tracking-wider font-semibold text-lavender">
                         {club.shortName}
                       </span>
                     </div>
-                    <h3 className="font-serif text-xl sm:text-2xl font-medium leading-snug text-white">
+                    <h3 className="font-serif text-lg sm:text-xl font-medium leading-snug text-white">
                       {club.fullName}
                     </h3>
-                    <p className="text-xs sm:text-sm text-ivory/85 font-sans line-clamp-2 leading-relaxed pt-1">
+                    <p className="text-xs text-ivory/85 font-sans line-clamp-2 leading-relaxed pt-0.5">
                       {club.tagline}
                     </p>
                   </div>
@@ -341,7 +258,7 @@ export default function ClubsShowcase() {
         {/* Selected Club Detailed Content Panel: Expansive Layout */}
         <div
           ref={detailsRef}
-          className="mt-10 p-8 sm:p-10 lg:p-12 rounded-sm bg-white border border-lavender-border shadow-editorial transition-all duration-300"
+          className="mt-10 sm:mt-12 p-8 sm:p-10 lg:p-12 rounded-sm bg-white border border-lavender-border shadow-editorial transition-all duration-300"
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-8 space-y-3">
