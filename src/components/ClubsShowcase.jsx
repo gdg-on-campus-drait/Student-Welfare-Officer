@@ -18,6 +18,7 @@ import techImg from '../assets/clubs/tech.jpg';
 import sportsImg from '../assets/clubs/sports.jpg';
 import literaryImg from '../assets/clubs/literary.jpg';
 import outreachImg from '../assets/clubs/outreach.jpg';
+import ieeeImg from '../assets/clubs/ieee.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,6 +108,23 @@ const CLUBS = [
     image: outreachImg,
     facultyCoordination: 'NSS Program Officer',
   },
+  {
+    id: 'ieee-robotics',
+    shortName: 'IEEE & Robotics',
+    fullName: 'IEEE Student Branch & Robotics Forum',
+    category: 'Engineering & Research',
+    icon: Cpu,
+    tagline: 'Autonomous robotics, research paper symposia, and embedded hardware sprints.',
+    description:
+      'The premier technical forum dedicated to advanced electronics, autonomous robotics prototyping, AI engineering, and national IEEE student paper publications.',
+    activities: [
+      'Autonomous Robotics Design Sprints',
+      'National Student Research Symposia',
+      'Embedded IoT & Microcontroller Bench',
+    ],
+    image: ieeeImg,
+    facultyCoordination: 'Dept. of ECE & Electrical Engineering',
+  },
 ];
 
 export default function ClubsShowcase() {
@@ -167,7 +185,7 @@ export default function ClubsShowcase() {
     <section
       id="clubs"
       ref={containerRef}
-      className="scroll-mt-24 py-20 sm:py-28 lg:py-32 bg-[#FAF7F8] border-t border-lavender-border/60 relative overflow-hidden"
+      className="scroll-mt-32 pt-28 sm:pt-36 lg:pt-40 pb-20 sm:pb-28 bg-[#FAF7F8] border-t border-lavender-border/60 relative overflow-hidden"
       aria-label="Student Clubs and Communities Showcase"
     >
       <div className="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
@@ -196,10 +214,10 @@ export default function ClubsShowcase() {
           </div>
         </div>
 
-        {/* All Clubs Grid — All Visible Simultaneously Without Horizontal Scrolling */}
+        {/* All Clubs Grid — 3 Above and 3 Below (Balanced 3-Column Grid) */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
         >
           {CLUBS.map((club, idx) => {
             const isActive = idx === activeIndex;
@@ -210,42 +228,42 @@ export default function ClubsShowcase() {
                 onClick={() => handleSelectClub(idx)}
                 className={`group relative rounded-sm transition-all duration-300 cursor-pointer flex flex-col ${
                   isActive
-                    ? 'ring-2 ring-plum ring-offset-4 ring-offset-[#FAF7F8] shadow-editorial-lg scale-[1.02]'
-                    : 'opacity-85 hover:opacity-100 hover:shadow-editorial hover:-translate-y-1'
+                    ? 'ring-2 ring-plum ring-offset-4 ring-offset-[#FAF7F8] shadow-editorial-lg scale-[1.01]'
+                    : 'opacity-90 hover:opacity-100 hover:shadow-editorial hover:-translate-y-1'
                 }`}
               >
                 {/* Editorial Image Card */}
-                <div className="relative aspect-[3/4] sm:aspect-[4/5] rounded-sm overflow-hidden bg-lilac border border-lavender-border shadow-sm flex flex-col justify-between p-5 sm:p-6 text-white">
+                <div className="relative aspect-[4/5] rounded-sm overflow-hidden bg-lilac border border-lavender-border shadow-sm flex flex-col justify-between p-6 sm:p-7 text-white">
                   <img
                     src={club.image}
                     alt={club.fullName}
                     className="absolute inset-0 w-full h-full object-cover object-center filter saturate-[0.98] transition-transform duration-700 ease-out group-hover:scale-108"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-charcoal/40 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/50 to-charcoal/30 pointer-events-none" />
 
                   {/* Top Bar on Card */}
                   <div className="relative z-10 flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs">
+                    <span className="px-3 py-1 rounded-full text-xs font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs shadow-xs">
                       {club.category}
                     </span>
-                    <span className="w-7 h-7 rounded-full bg-charcoal/60 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold">
+                    <span className="w-8 h-8 rounded-full bg-charcoal/70 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold border border-white/20">
                       0{idx + 1}
                     </span>
                   </div>
 
                   {/* Bottom Content on Card */}
-                  <div className="relative z-10 space-y-1">
-                    <div className="flex items-center gap-1.5">
-                      <Icon className="w-3.5 h-3.5 text-lavender" />
-                      <span className="text-[11px] uppercase tracking-wider font-semibold text-lavender">
+                  <div className="relative z-10 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Icon className="w-4 h-4 text-lavender" />
+                      <span className="text-xs uppercase tracking-wider font-semibold text-lavender">
                         {club.shortName}
                       </span>
                     </div>
-                    <h3 className="font-serif text-lg sm:text-xl font-medium leading-snug text-white">
+                    <h3 className="font-serif text-xl sm:text-2xl font-medium leading-snug text-white">
                       {club.fullName}
                     </h3>
-                    <p className="text-xs text-ivory/85 font-sans line-clamp-2 leading-relaxed pt-0.5">
+                    <p className="text-xs sm:text-sm text-ivory/90 font-sans line-clamp-2 leading-relaxed pt-0.5">
                       {club.tagline}
                     </p>
                   </div>
