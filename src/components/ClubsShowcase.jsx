@@ -143,28 +143,14 @@ export default function ClubsShowcase() {
 
       gsap.from('.clubs-header-reveal', {
         opacity: 0,
-        y: 26,
-        duration: 0.7,
+        y: 20,
+        duration: 0.6,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top 85%',
         },
       });
-
-      if (gridRef.current) {
-        gsap.from(gridRef.current.children, {
-          opacity: 0,
-          y: 28,
-          duration: 0.65,
-          stagger: 0.08,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: 'top 82%',
-          },
-        });
-      }
     },
     { scope: containerRef }
   );
@@ -215,11 +201,11 @@ export default function ClubsShowcase() {
         </div>
 
         {/* Rounded Lavender Container Framing the 3x2 Grid */}
-        <div className="bg-lavender/55 border border-lavender-border/90 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-subtle mb-10 sm:mb-12">
+        <div className="bg-[#EADEEA] border border-lavender-border rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 shadow-editorial mb-10 sm:mb-12">
           {/* All Clubs Grid — 3 Above and 3 Below (Compact Size, Full Opacity) */}
           <div
             ref={gridRef}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
           >
             {CLUBS.map((club, idx) => {
               const isActive = idx === activeIndex;
@@ -230,26 +216,26 @@ export default function ClubsShowcase() {
                   onClick={() => handleSelectClub(idx)}
                   className={`group relative rounded-xl transition-all duration-300 cursor-pointer flex flex-col ${
                     isActive
-                      ? 'ring-2 ring-plum ring-offset-2 ring-offset-lavender shadow-editorial-lg scale-[1.02]'
-                      : 'opacity-100 hover:shadow-editorial hover:-translate-y-1'
+                      ? 'ring-3 ring-plum ring-offset-2 ring-offset-lavender shadow-editorial-lg scale-[1.02]'
+                      : 'ring-1 ring-plum/20 hover:ring-plum/50 hover:shadow-editorial hover:-translate-y-1'
                   }`}
                 >
                   {/* Compact Editorial Image Card */}
-                  <div className="relative aspect-[16/11] sm:aspect-[4/3] rounded-xl overflow-hidden bg-plum-deep border border-lavender-border shadow-sm flex flex-col justify-between p-5 text-white">
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-plum-deep border border-white/20 shadow-sm flex flex-col justify-between p-4 sm:p-5 text-white">
                     <img
                       src={club.image}
                       alt={club.fullName}
-                      className="absolute inset-0 w-full h-full object-cover object-center filter saturate-[1.02] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-108"
-                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover object-center filter saturate-[1.05] contrast-[1.05] transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-charcoal/30 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
                     {/* Top Bar on Card */}
                     <div className="relative z-10 flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs shadow-xs">
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-sans font-semibold uppercase tracking-wider bg-plum text-white shadow-sm border border-white/10">
                         {club.category}
                       </span>
-                      <span className="w-7 h-7 rounded-full bg-charcoal/70 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold border border-white/20">
+                      <span className="w-7 h-7 rounded-full bg-white/95 text-plum shadow-xs flex items-center justify-center text-xs font-serif font-bold border border-plum/15">
                         0{idx + 1}
                       </span>
                     </div>
@@ -258,14 +244,14 @@ export default function ClubsShowcase() {
                     <div className="relative z-10 space-y-1">
                       <div className="flex items-center gap-1.5">
                         <Icon className="w-3.5 h-3.5 text-lavender" />
-                        <span className="text-[11px] uppercase tracking-wider font-semibold text-lavender">
+                        <span className="text-[11px] uppercase tracking-wider font-semibold text-lavender font-sans">
                           {club.shortName}
                         </span>
                       </div>
-                      <h3 className="font-serif text-lg sm:text-xl font-medium leading-snug text-white">
+                      <h3 className="font-serif text-lg sm:text-xl font-bold leading-snug text-white drop-shadow-sm">
                         {club.fullName}
                       </h3>
-                      <p className="text-xs text-ivory/90 font-sans line-clamp-2 leading-relaxed pt-0.5">
+                      <p className="text-xs text-white/90 font-sans line-clamp-2 leading-relaxed">
                         {club.tagline}
                       </p>
                     </div>
