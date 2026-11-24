@@ -139,12 +139,13 @@ export default function Navbar() {
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, { label: 'Home', href: '#home' })}
-            className="group flex items-center gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm"
+            className="group flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum rounded-sm"
             aria-label="Student Welfare Office homepage"
           >
-            <div className="w-10 h-10 rounded-sm bg-plum flex items-center justify-center text-ivory font-serif font-bold text-lg tracking-wider shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:bg-plum-deep group-hover:shadow-editorial">
+            <span className="font-serif font-bold text-2xl tracking-wider text-charcoal group-hover:text-plum transition-colors duration-200">
               SWO
-            </div>
+            </span>
+            <span className="hidden sm:inline-block w-[1px] h-7 bg-lavender-border" />
 
             <div className="flex flex-col">
               <span className="font-serif text-lg tracking-tight text-charcoal font-semibold leading-tight group-hover:text-plum transition-colors duration-200">
@@ -220,9 +221,10 @@ export default function Navbar() {
         {/* Overlay Top Bar */}
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full pt-6 flex items-center justify-between border-b border-lavender-border/70 pb-5">
           <div className="flex items-center gap-3">
-            <span className="w-8 h-8 rounded-sm bg-plum text-ivory font-serif font-bold text-sm flex items-center justify-center">
+            <span className="font-serif font-bold text-xl tracking-wider text-charcoal">
               SWO
             </span>
+            <span className="w-[1px] h-5 bg-lavender-border" />
             <span className="font-serif text-base font-semibold text-charcoal">
               Student Welfare Office • Dr. AIT
             </span>
