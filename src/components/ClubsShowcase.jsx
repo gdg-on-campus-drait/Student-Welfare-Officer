@@ -214,69 +214,72 @@ export default function ClubsShowcase() {
           </div>
         </div>
 
-        {/* All Clubs Grid — 3 Above and 3 Below (Balanced 3-Column Grid) */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
-        >
-          {CLUBS.map((club, idx) => {
-            const isActive = idx === activeIndex;
-            const Icon = club.icon;
-            return (
-              <div
-                key={club.id}
-                onClick={() => handleSelectClub(idx)}
-                className={`group relative rounded-sm transition-all duration-300 cursor-pointer flex flex-col ${
-                  isActive
-                    ? 'ring-2 ring-plum ring-offset-4 ring-offset-[#FAF7F8] shadow-editorial-lg scale-[1.01]'
-                    : 'opacity-90 hover:opacity-100 hover:shadow-editorial hover:-translate-y-1'
-                }`}
-              >
-                {/* Editorial Image Card */}
-                <div className="relative aspect-[4/5] rounded-sm overflow-hidden bg-lilac border border-lavender-border shadow-sm flex flex-col justify-between p-6 sm:p-7 text-white">
-                  <img
-                    src={club.image}
-                    alt={club.fullName}
-                    className="absolute inset-0 w-full h-full object-cover object-center filter saturate-[0.98] transition-transform duration-700 ease-out group-hover:scale-108"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/50 to-charcoal/30 pointer-events-none" />
+        {/* Rounded Lavender Container Framing the 3x2 Grid */}
+        <div className="bg-lavender/55 border border-lavender-border/90 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-subtle mb-10 sm:mb-12">
+          {/* All Clubs Grid — 3 Above and 3 Below (Compact Size, Full Opacity) */}
+          <div
+            ref={gridRef}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7"
+          >
+            {CLUBS.map((club, idx) => {
+              const isActive = idx === activeIndex;
+              const Icon = club.icon;
+              return (
+                <div
+                  key={club.id}
+                  onClick={() => handleSelectClub(idx)}
+                  className={`group relative rounded-xl transition-all duration-300 cursor-pointer flex flex-col ${
+                    isActive
+                      ? 'ring-2 ring-plum ring-offset-2 ring-offset-lavender shadow-editorial-lg scale-[1.02]'
+                      : 'opacity-100 hover:shadow-editorial hover:-translate-y-1'
+                  }`}
+                >
+                  {/* Compact Editorial Image Card */}
+                  <div className="relative aspect-[16/11] sm:aspect-[4/3] rounded-xl overflow-hidden bg-plum-deep border border-lavender-border shadow-sm flex flex-col justify-between p-5 text-white">
+                    <img
+                      src={club.image}
+                      alt={club.fullName}
+                      className="absolute inset-0 w-full h-full object-cover object-center filter saturate-[1.02] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-108"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-charcoal/30 pointer-events-none" />
 
-                  {/* Top Bar on Card */}
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs shadow-xs">
-                      {club.category}
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-charcoal/70 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold border border-white/20">
-                      0{idx + 1}
-                    </span>
-                  </div>
-
-                  {/* Bottom Content on Card */}
-                  <div className="relative z-10 space-y-2">
-                    <div className="flex items-center gap-2">
-                      <Icon className="w-4 h-4 text-lavender" />
-                      <span className="text-xs uppercase tracking-wider font-semibold text-lavender">
-                        {club.shortName}
+                    {/* Top Bar on Card */}
+                    <div className="relative z-10 flex items-center justify-between">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-sans font-semibold uppercase tracking-wider bg-white/95 text-plum backdrop-blur-xs shadow-xs">
+                        {club.category}
+                      </span>
+                      <span className="w-7 h-7 rounded-full bg-charcoal/70 backdrop-blur-md flex items-center justify-center text-ivory text-xs font-serif font-bold border border-white/20">
+                        0{idx + 1}
                       </span>
                     </div>
-                    <h3 className="font-serif text-xl sm:text-2xl font-medium leading-snug text-white">
-                      {club.fullName}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-ivory/90 font-sans line-clamp-2 leading-relaxed pt-0.5">
-                      {club.tagline}
-                    </p>
+
+                    {/* Bottom Content on Card */}
+                    <div className="relative z-10 space-y-1">
+                      <div className="flex items-center gap-1.5">
+                        <Icon className="w-3.5 h-3.5 text-lavender" />
+                        <span className="text-[11px] uppercase tracking-wider font-semibold text-lavender">
+                          {club.shortName}
+                        </span>
+                      </div>
+                      <h3 className="font-serif text-lg sm:text-xl font-medium leading-snug text-white">
+                        {club.fullName}
+                      </h3>
+                      <p className="text-xs text-ivory/90 font-sans line-clamp-2 leading-relaxed pt-0.5">
+                        {club.tagline}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
-        {/* Selected Club Detailed Content Panel: Expansive Layout */}
+        {/* Selected Club Detailed Content Panel */}
         <div
           ref={detailsRef}
-          className="mt-10 sm:mt-12 p-8 sm:p-10 lg:p-12 rounded-sm bg-white border border-lavender-border shadow-editorial transition-all duration-300"
+          className="p-8 sm:p-10 lg:p-12 rounded-2xl bg-white border border-lavender-border shadow-editorial transition-all duration-300"
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-8 space-y-3">
