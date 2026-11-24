@@ -123,13 +123,6 @@ export default function AboutSection() {
                   })}
                 </nav>
               </div>
-
-              {/* Institutional Details Footer in Sidebar */}
-              <div className="pt-6 mt-8 border-t border-lavender-border/80 text-xs font-sans text-charcoal-muted space-y-1">
-                <p className="font-semibold text-charcoal">Dr. Ambedkar Institute of Technology</p>
-                <p>Autonomous Institution • VTU Affiliated</p>
-                <p>Bengaluru, Karnataka</p>
-              </div>
             </div>
 
             {/* Right Main Content Pane (8 cols desktop) */}
@@ -149,7 +142,7 @@ export default function AboutSection() {
                     </p>
                   </div>
 
-                  <div className="pt-6 border-t border-lavender-border/80">
+                  <div className="pt-2">
                     <h3 className="font-serif text-2xl sm:text-3xl text-charcoal font-semibold mb-3">
                       Vision
                     </h3>
@@ -158,7 +151,7 @@ export default function AboutSection() {
                     </p>
                   </div>
 
-                  <div className="pt-6 border-t border-lavender-border/80">
+                  <div className="pt-2">
                     <h3 className="font-serif text-2xl sm:text-3xl text-charcoal font-semibold mb-3">
                       Mission
                     </h3>
@@ -214,7 +207,7 @@ export default function AboutSection() {
                           </p>
                         </div>
 
-                        <div className="space-y-2 pt-2 border-t border-lavender-border/80">
+                        <div className="space-y-2 pt-1">
                           <h4 className="text-xs font-sans font-semibold text-charcoal uppercase tracking-wider">
                             Key Administrative Responsibilities
                           </h4>
@@ -232,11 +225,6 @@ export default function AboutSection() {
                               <span>Liaison between student body representatives, department heads, and institutional governance.</span>
                             </li>
                           </ul>
-                        </div>
-
-                        <div className="pt-3 border-t border-lavender-border/80 text-xs font-sans text-charcoal-muted">
-                          <p><strong>Official Desk:</strong> Room 104, Student Welfare Block, Dr. AIT Campus</p>
-                          <p className="mt-0.5"><strong>Office Hours:</strong> Mon – Fri: 9:00 AM – 5:00 PM</p>
                         </div>
                       </div>
                     </div>
@@ -331,10 +319,7 @@ export default function AboutSection() {
               )}
 
               {/* Bottom Card Footer with Action */}
-              <div className="pt-8 mt-8 border-t border-lavender-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <span className="text-xs text-charcoal-subtle font-sans">
-                  Official Administrative Desk • Dean of Student Welfare
-                </span>
+              <div className="pt-6 flex justify-end">
                 <a
                   href="#contact"
                   className="text-xs font-semibold text-plum hover:text-plum-deep uppercase tracking-wider font-sans"
