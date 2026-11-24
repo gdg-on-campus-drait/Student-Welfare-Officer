@@ -2,9 +2,8 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight, Compass, Sparkles, MapPin, Building2, Award, Landmark } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import heroCampusImg from '../assets/hero-campus.jpg';
-import MagneticButton from './MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,10 +11,7 @@ export default function Hero() {
   const containerRef = useRef(null);
   const headingLine1Ref = useRef(null);
   const headingLine2Ref = useRef(null);
-  const labelRef = useRef(null);
   const descRef = useRef(null);
-  const ctaGroupRef = useRef(null);
-  const factsGroupRef = useRef(null);
   const imageFrameRef = useRef(null);
   const imageRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
@@ -30,28 +26,17 @@ export default function Hero() {
       });
 
       // 1. Cinematic Hero Entrance Timeline
-      // Label eyebrow
+      // Staggered Line-by-Line Heading Mask Reveal (Gravelle du Parc style)
       tl.from(
-        labelRef.current,
+        [headingLine1Ref.current, headingLine2Ref.current],
         {
-          opacity: 0,
-          y: 18,
-          duration: 0.6,
-          ease: 'power3.out',
+          yPercent: 115,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: 'power4.out',
         },
-        0.05
+        0.1
       )
-        // Staggered Line-by-Line Heading Mask Reveal (Gravelle du Parc style)
-        .from(
-          [headingLine1Ref.current, headingLine2Ref.current],
-          {
-            yPercent: 115,
-            duration: 0.9,
-            stagger: 0.12,
-            ease: 'power4.out',
-          },
-          0.15
-        )
         // Supporting paragraph reveal
         .from(
           descRef.current,
@@ -61,28 +46,7 @@ export default function Hero() {
             duration: 0.65,
             ease: 'power3.out',
           },
-          0.45
-        )
-        // CTAs entrance
-        .from(
-          ctaGroupRef.current,
-          {
-            opacity: 0,
-            y: 18,
-            duration: 0.6,
-            ease: 'power3.out',
-          },
-          0.58
-        )
-        // Verified institutional strip
-        .from(
-          factsGroupRef.current,
-          {
-            opacity: 0,
-            y: 14,
-            duration: 0.5,
-          },
-          0.68
+          0.35
         )
         // Hero Image: Smooth Clip-path & Scale-down Reveal
         .fromTo(
@@ -182,24 +146,12 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column: Editorial Content (7 cols desktop) */}
           <div className="lg:col-span-7 flex flex-col justify-center pr-0 lg:pr-6">
-            {/* Small Label Badge */}
-            <div ref={labelRef} className="flex items-center gap-2.5 mb-5 sm:mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-lilac border border-lavender-border/70 text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-plum shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-plum" />
-                STUDENT WELFARE OFFICE
-              </span>
-              <span className="hidden sm:inline-block w-10 h-[1px] bg-lavender-border" />
-              <span className="text-xs font-sans uppercase tracking-widest text-charcoal-subtle hidden sm:inline-block">
-                Dr. AIT Bengaluru
-              </span>
-            </div>
-
             {/* Main Editorial Headline with Line-by-Line Masking */}
             <h1 className="font-serif text-charcoal tracking-tightest leading-[1.05] mb-6 sm:mb-8">
               <span className="block overflow-hidden py-1">
                 <span
                   ref={headingLine1Ref}
-                  className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] 2xl:text-[6rem] font-normal"
+                  className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] 2xl:text-[6.25rem] font-normal"
                 >
                   More Than Academics.
                 </span>
@@ -207,7 +159,7 @@ export default function Hero() {
               <span className="block overflow-hidden py-1">
                 <span
                   ref={headingLine2Ref}
-                  className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] 2xl:text-[6rem] font-medium text-plum italic"
+                  className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] 2xl:text-[6.25rem] font-medium text-plum italic"
                 >
                   A Community to Grow.
                 </span>
@@ -239,58 +191,11 @@ export default function Hero() {
             {/* Supporting Description */}
             <p
               ref={descRef}
-              className="text-charcoal-muted text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed max-w-2xl mb-8 sm:mb-10 text-balance font-sans"
+              className="text-charcoal-muted text-lg sm:text-xl lg:text-2xl font-normal leading-relaxed max-w-2xl text-balance font-sans"
             >
               The Student Welfare Office brings students, communities and opportunities
               together to create a richer campus experience.
             </p>
-
-            {/* CTA Group with Magnetic Pull on Desktop */}
-            <div
-              ref={ctaGroupRef}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-10 sm:mb-12"
-            >
-              <MagneticButton strength={0.25}>
-                <a
-                  href="#clubs"
-                  className="group inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-sm bg-plum text-ivory font-sans font-medium text-sm sm:text-base tracking-wide shadow-editorial hover:bg-plum-deep hover:shadow-editorial-lg transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-plum"
-                >
-                  <span>Explore Our Communities</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-              </MagneticButton>
-
-              <MagneticButton strength={0.2}>
-                <a
-                  href="#about"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-4 sm:py-4.5 rounded-sm text-charcoal hover:text-plum font-sans font-medium text-sm sm:text-base tracking-wide border border-lavender-border hover:border-plum/40 bg-white/80 hover:bg-lilac/40 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum"
-                >
-                  <Compass className="w-4 h-4 text-plum" />
-                  <span>About the Welfare Office</span>
-                </a>
-              </MagneticButton>
-            </div>
-
-            {/* Verified Institutional Attributes Strip */}
-            <div
-              ref={factsGroupRef}
-              className="pt-6 border-t border-lavender-border/70 flex flex-wrap items-center gap-y-3 gap-x-8 text-xs sm:text-sm text-charcoal-muted"
-            >
-              <div className="flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-plum shrink-0" />
-                <span>Autonomous Institution</span>
-              </div>
-              <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-lavender-border" />
-              <div className="flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-plum shrink-0" />
-                <span>Affiliated to VTU, Belagavi</span>
-              </div>
-              <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-lavender-border" />
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-plum shrink-0" />
-                <span>Estd. 1980 • PVP Welfare Trust</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Expansive, Immersive Campus Photograph (Desktop 5 cols) */}

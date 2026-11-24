@@ -120,17 +120,10 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 5. Scroll Progress Bar */}
-      <div
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-plum via-lavender to-plum origin-left z-50 pointer-events-none transition-transform duration-75 ease-out"
-        style={{ transform: `scaleX(${scrollProgress})`, transformOrigin: 'left' }}
-        aria-hidden="true"
-      />
-
-      {/* Main Navbar */}
+      {/* Main Navbar with Themed Lavender Blur on Scroll */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out ${isScrolled
-          ? 'bg-ivory/92 backdrop-blur-md py-3.5 border-b border-lavender-border/70 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.08)]'
+          ? 'bg-lavender/95 backdrop-blur-md py-3.5 border-b border-plum/15 shadow-[0_4px_24px_-4px_rgba(81,38,79,0.12)]'
           : 'bg-transparent py-5 sm:py-6'
           }`}
       >

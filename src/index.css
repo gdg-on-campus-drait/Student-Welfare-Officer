@@ -39,6 +39,29 @@ html.lenis, html.lenis body {
   }
 }
 
+/* Hide horizontal scrollbar across all browsers */
+::-webkit-scrollbar:horizontal {
+  height: 0px !important;
+  display: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Prevent horizontal page overflow */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Reduced motion preference handling */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
