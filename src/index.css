@@ -12,10 +12,10 @@
     font-feature-settings: 'cv11', 'ss01';
   }
   ::selection {
-    @apply bg-gold-200 text-navy-950;
+    @apply bg-accent-200 text-navy-950;
   }
   :focus-visible {
-    @apply outline-none ring-2 ring-gold-500 ring-offset-2 ring-offset-white;
+    @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-white;
   }
 }
 
@@ -24,14 +24,14 @@
     @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-eyebrow text-gold-700;
+    @apply inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-eyebrow text-accent-600;
   }
   .eyebrow::before {
     content: '';
-    @apply h-px w-8 bg-gold-500;
+    @apply h-px w-8 bg-accent-500;
   }
   .eyebrow-light {
-    @apply text-gold-300;
+    @apply text-accent-300;
   }
   .h-display {
     @apply font-display font-medium tracking-tight text-navy-900;
@@ -52,7 +52,7 @@
     @apply border-line bg-white text-ink-muted hover:border-navy-300 hover:text-navy-900;
   }
   .link-arrow {
-    @apply inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 transition-colors hover:text-gold-700;
+    @apply inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 transition-colors hover:text-accent-600;
   }
   .field {
     @apply w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-faint transition focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20;

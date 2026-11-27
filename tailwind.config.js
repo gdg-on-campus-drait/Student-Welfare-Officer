@@ -17,15 +17,16 @@ export default {
           900: '#0B1E40',
           950: '#06132B',
         },
-        gold: {
-          50: '#FBF7EA',
-          100: '#F5ECCB',
-          200: '#EBD894',
-          300: '#E0C463',
-          DEFAULT: '#C9A13B',
-          500: '#C9A13B',
-          600: '#A9832A',
-          700: '#7F6220', // AA-safe gold text on white
+        accent: {
+          50: '#EFF5FF',
+          100: '#DCE8FF',
+          200: '#B9D1FF',
+          300: '#8DB3FF',
+          400: '#5B8DF6',
+          DEFAULT: '#3A6FE0',
+          500: '#3A6FE0',
+          600: '#2757C2',
+          700: '#1E449A',
         },
         ink: {
           DEFAULT: '#0F172A',

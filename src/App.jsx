@@ -5,12 +5,21 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CustomCursor from './components/CustomCursor';
 import SearchDialog from './components/features/SearchDialog';
-import Assistant from './components/features/Assistant';
 import HomePage from './pages/HomePage';
 import { useLenis } from './hooks/useLenis';
 import { scrollToId } from './lib/scroll';
 
-const StudentWelfarePage = lazy(() => import('./pages/StudentWelfarePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ClubsPage = lazy(() => import('./pages/ClubsPage'));
+const ClubDetailPage = lazy(() => import('./pages/ClubDetailPage'));
+const FestsPage = lazy(() => import('./pages/FestsPage'));
+const FestDetailPage = lazy(() => import('./pages/FestDetailPage'));
+const EventsPage = lazy(() => import('./pages/EventsPage'));
+const TeamPage = lazy(() => import('./pages/TeamPage'));
+const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 /** Scroll to the URL hash after navigation, or to the top of a new page. */
 function ScrollManager() {
@@ -35,6 +44,8 @@ function ScrollManager() {
   return null;
 }
 
+const PageFallback = () => <div className="min-h-screen bg-navy-950" aria-busy="true" />;
+
 function Shell() {
   useLenis();
   return (
@@ -46,22 +57,27 @@ function Shell() {
       <ScrollManager />
       <Navbar />
       <main id="main" className="flex-grow">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/student-welfare"
-            element={
-              <Suspense fallback={<div className="min-h-screen bg-navy-950" />}>
-                <StudentWelfarePage />
-              </Suspense>
-            }
-          />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/clubs" element={<ClubsPage />} />
+            <Route path="/clubs/:slug" element={<ClubDetailPage />} />
+            <Route path="/fests" element={<FestsPage />} />
+            <Route path="/fests/:slug" element={<FestDetailPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/team" element={<TeamPage />} />
+            <Route path="/achievements" element={<AchievementsPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            {/* Old URL from the previous site */}
+            <Route path="/student-welfare" element={<AboutPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
       <SearchDialog />
-      <Assistant />
     </div>
   );
 }
