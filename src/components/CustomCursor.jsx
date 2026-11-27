@@ -74,10 +74,10 @@ export default function CustomCursor() {
         isHidden ? 'opacity-0' : 'opacity-100'
       } ${
         isDrag
-          ? 'w-16 h-16 bg-plum text-ivory text-[10px] font-sans font-semibold tracking-widest uppercase shadow-editorial scale-100'
+          ? 'w-16 h-16 bg-navy-900 text-white text-[10px] font-sans font-semibold tracking-widest uppercase shadow-lift scale-100'
           : isPointer
-          ? 'w-10 h-10 border border-plum/60 bg-lilac/40 scale-110 backdrop-blur-[1px]'
-          : 'w-4 h-4 border border-plum/50 bg-plum/20'
+          ? 'w-10 h-10 border border-gold-500 bg-gold-200/30 scale-110 backdrop-blur-[1px]'
+          : 'w-4 h-4 border border-navy-700/50 bg-navy-700/15'
       }`}
       style={{ willChange: 'transform' }}
     >
@@ -87,7 +87,7 @@ export default function CustomCursor() {
         </span>
       ) : (
         <div
-          className={`w-1 h-1 rounded-full bg-plum transition-transform ${
+          className={`w-1 h-1 rounded-full bg-navy-900 transition-transform ${
             isPointer ? 'scale-0' : 'scale-100'
           }`}
         />
