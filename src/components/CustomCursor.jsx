@@ -76,7 +76,7 @@ export default function CustomCursor() {
         isDrag
           ? 'w-16 h-16 bg-navy-900 text-white text-[10px] font-sans font-semibold tracking-widest uppercase shadow-lift scale-100'
           : isPointer
-          ? 'w-10 h-10 border border-gold-500 bg-gold-200/30 scale-110 backdrop-blur-[1px]'
+          ? 'w-10 h-10 border border-accent-500 bg-accent-200/30 scale-110 backdrop-blur-[1px]'
           : 'w-4 h-4 border border-navy-700/50 bg-navy-700/15'
       }`}
       style={{ willChange: 'transform' }}

@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, CornerDownLeft, ArrowUpRight, X } from 'lucide-react';
-import { searchSite } from '../../data/searchIndex';
+import { searchContent as searchSite } from '../../content/search';
 import { lockScroll } from '../../lib/scroll';
 import { useGo } from '../../lib/useGo';
 import { SEARCH_EVENT as EVENT } from '../../lib/searchEvents';
 
 
-const SUGGESTIONS = ['Computer Science', 'Placements', 'Hostel', 'Scholarship', 'Principal', 'Hackathon', 'MBA', 'Library'];
+const SUGGESTIONS = ['Sanskruthi', 'Hackathon', 'NCC', 'Motor Sports', 'IEEE', 'Yoga', 'Chetan'];
 
 export default function SearchDialog() {
   const [open, setOpen] = useState(false);
@@ -94,7 +94,7 @@ export default function SearchDialog() {
               setActive(0);
             }}
             onKeyDown={onKeyDown}
-            placeholder="Search programmes, departments, people, notices…"
+            placeholder="Search clubs, fests, events, people…"
             className="h-16 flex-1 bg-transparent text-base text-ink outline-none placeholder:text-ink-faint"
             role="combobox"
             aria-expanded={results.length > 0}
@@ -122,7 +122,7 @@ export default function SearchDialog() {
             </div>
           )}
           {q.trim() && !results.length && (
-            <p className="px-4 py-10 text-center text-sm text-ink-subtle">No results for “{q}”. Try a department, programme or person.</p>
+            <p className="px-4 py-10 text-center text-sm text-ink-subtle">No results for “{q}”. Try a club, fest or event name.</p>
           )}
           <ul id="search-results" role="listbox">
             {results.map((r, i) => (
@@ -133,7 +133,7 @@ export default function SearchDialog() {
                   onClick={() => choose(r)}
                   className={`flex w-full items-center gap-4 rounded-xl px-4 py-3 text-left ${i === active ? 'bg-navy-50' : ''}`}
                 >
-                  <span className="w-20 shrink-0 text-[10px] font-semibold uppercase tracking-wide text-gold-700">{r.category}</span>
+                  <span className="w-20 shrink-0 text-[10px] font-semibold uppercase tracking-wide text-accent-600">{r.category}</span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-medium text-navy-900">{r.title}</span>
                     {r.text && <span className="block truncate text-xs text-ink-subtle">{r.text}</span>}
